@@ -52,5 +52,5 @@ public interface DomainURLMethodConfigApi {
     String call(@Url String url, @MethodParam String method);
 
     @HttpRequest
-    String call(@Url String url, RequestMethod method);
+    String call(@Url String url, @MethodParam RequestMethod method);
 }
