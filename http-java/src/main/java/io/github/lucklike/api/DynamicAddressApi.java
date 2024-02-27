@@ -22,8 +22,8 @@ public interface DynamicAddressApi {
         // 定义 3 个 IP 地址
         String[] ipArray = new String[] {
                 "http://www.baidu.com",
-                "https://cn.bing.com/",
-                "https://github.com/",
+                "https://cn.bing.com",
+                "https://github.com",
         };
         // 随机选出其中一个
         return ipArray[new Random().nextInt(3)];

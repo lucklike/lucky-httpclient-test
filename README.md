@@ -163,4 +163,64 @@ Spring/SpringBoot:
     String result4 = simple2(RequestMethod.PUT);
 ```
 
-### 🚚 请求地址
+### 🚚 域名注解`@DomainName`
+开发中建议将`同一个域名`或者`同一域名中某个特定的模块`下的Http接口组织到`同一个Java接口`，这样便可以使用 **`@DomainName`** 注解来提取公共域名，方便统一管理。
+
+#### 直接配置
+使用`@DomainName`注解，直接将`域名`部分配置在接口上
+```java
+@DomainName("http://localhost:8081/simple/")
+public interface SimpleApi {
+
+    /*
+       GET http://localhost:8081/simple/sayHello?name=Lucky
+       User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_301)
+    */
+    @Get("sayHello")
+    String sendRequest(String name);
+}
+```
+
+#### 使用`SpEL表达式`指定
+`SpEL`表达式是一个十分强大的功能，通过如下几个案例来解释说明：
+1. **通过`$var$`上下文对象可以直接获取到通过`HttpClientProxyObjectFactory.addExpressionParam(...)`方法导入的参数**  
+   ````java
+      // 添加一个变量
+      HttpClientProxyObjectFactory.addExpressionParam("serverBoot", "http://localhost:8081");
+   ````
+   通过`$val$.serverBoot`引用此变量
+   ````java
+      @DomainName("#{$val$.serverBoot}/simple/")
+      public interface SimpleApi {
+      
+          /*
+             GET http://localhost:8081/simple/sayHello?name=Lucky
+             User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_301)
+          */
+          @Get("sayHello")
+          String sendRequest(String name);
+      }
+   ````
+2. **使用`$this$`上下文对象访问本接口的`default`方法**  
+   使用`$this$`尝试做一个随机域名功能
+      ````java
+         @DomainName("#{$this$.getDomain()}/simple/")
+         public interface SimpleApi {
+    
+             @Get("sayHello")
+             String sendRequest(String name);
+   
+   
+             default String getDomain() {
+                 // 定义3个服务域名
+                 String[] ipArray = new String[] {
+                         "http://localhost:8081",
+                         "http://localhost:8082",
+                         "http://localhost:8083",
+                 };
+                 // 随机选出其中一个
+                 return ipArray[new Random().nextInt(3)];
+             }    
+         }
+      ````
+#### 使用`@DomainNameMeta`注解指定

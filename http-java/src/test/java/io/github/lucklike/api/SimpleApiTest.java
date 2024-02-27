@@ -4,7 +4,6 @@ import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 
 /**
- *
  * @author fukang
  * @version 1.0.0
  * @date 2024/2/24 23:02
@@ -22,4 +21,5 @@ public class SimpleApiTest extends TestCase {
         System.out.println(api.hi("Tom"));
         System.out.println(api.hi("爱因斯坦"));
     }
+
 }
