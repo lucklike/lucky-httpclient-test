@@ -1,6 +1,7 @@
 package io.github.lucklike.util;
 
 import com.luckyframework.httpclient.core.executor.HttpClientExecutor;
+import com.luckyframework.httpclient.core.executor.JdkHttpExecutor;
 import com.luckyframework.httpclient.core.executor.OkHttp3Executor;
 import com.luckyframework.httpclient.core.ssl.SSLUtils;
 import com.luckyframework.httpclient.core.ssl.TrustAllHostnameVerifier;
@@ -21,59 +22,21 @@ import java.security.cert.X509Certificate;
  * @date 2024/2/24 23:03
  */
 public abstract class Lucky {
-
-    public static X509ExtendedTrustManager X509 = new X509ExtendedTrustManager() {
-        @Override
-        public void checkClientTrusted(X509Certificate[] x509Certificates, String s, Socket socket) throws CertificateException {
-
-        }
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] x509Certificates, String s, Socket socket) throws CertificateException {
-
-        }
-
-        @Override
-        public void checkClientTrusted(X509Certificate[] x509Certificates, String s, SSLEngine sslEngine) throws CertificateException {
-
-        }
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] x509Certificates, String s, SSLEngine sslEngine) throws CertificateException {
-
-        }
-
-        @Override
-        public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
-
-        }
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
-
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return new X509Certificate[0];
-        }
-    };
-
     private final static HttpClientProxyObjectFactory factory = new HttpClientProxyObjectFactory();
     static {
-        factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
-            log.setAllowPrintLogBodyMaxLength(1000);
-            log.setReqCondition("false");
-        });
+//        factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
+//            log.setAllowPrintLogBodyMaxLength(1000);
+//            log.setReqCondition("false");
+//        });
         HttpClientProxyObjectFactory.addExpressionParam("serverBoot", "http://localhost:8081");
         factory.setHttpExecutor(new HttpClientExecutor());
-        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
-
-        try {
-            factory.setSslSocketFactory(SSLUtils.createIgnoreVerifySSL("TLS").getSocketFactory());
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+//        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
+//
+//        try {
+//            factory.setSslSocketFactory(SSLUtils.createIgnoreVerifySSL("TLS").getSocketFactory());
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 

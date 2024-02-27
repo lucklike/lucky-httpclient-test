@@ -2,6 +2,7 @@ package io.github.lucklike.api;
 
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.Get;
+import com.luckyframework.httpclient.proxy.annotations.IgnoreVerifySSL;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 
 /**
@@ -10,7 +11,8 @@ import com.luckyframework.httpclient.proxy.annotations.PathParam;
  * @version 1.0.0
  * @date 2024/2/24 23:00
  */
-@DomainName("http://localhost:8081/simple/")
+@IgnoreVerifySSL
+@DomainName("https://localhost/simple/")
 public interface SimpleApi {
 
     /*
