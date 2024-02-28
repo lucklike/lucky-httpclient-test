@@ -24,12 +24,14 @@ import java.security.cert.X509Certificate;
 public abstract class Lucky {
     private final static HttpClientProxyObjectFactory factory = new HttpClientProxyObjectFactory();
     static {
-//        factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
-//            log.setAllowPrintLogBodyMaxLength(1000);
+        factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
+            log.setAllowPrintLogBodyMaxLength(1000);
 //            log.setReqCondition("false");
-//        });
+//            log.setPrintArgsInfo(true);
+//            log.setPrintAnnotationInfo(true);
+        });
         HttpClientProxyObjectFactory.addExpressionParam("serverBoot", "http://localhost:8081");
-        factory.setHttpExecutor(new HttpClientExecutor());
+        factory.setHttpExecutor(new OkHttp3Executor());
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //
 //        try {

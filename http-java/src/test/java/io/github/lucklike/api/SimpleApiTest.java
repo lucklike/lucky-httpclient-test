@@ -3,6 +3,8 @@ package io.github.lucklike.api;
 import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * @author fukang
  * @version 1.0.0
@@ -12,9 +14,9 @@ public class SimpleApiTest extends TestCase {
 
     private final SimpleApi api = Lucky.createApi(SimpleApi.class);
 
-    public void testSayHello() {
-        System.out.println(api.sayHello("Jack&age=19"));
-        System.out.println(api.sayHello("蔡徐坤"));
+    public void testSayHello() throws ExecutionException, InterruptedException {
+        System.out.println(api.sayHello("Jack&age=19").get());
+        System.out.println(api.sayHello("蔡徐坤").get());
     }
 
     public void testHi() {

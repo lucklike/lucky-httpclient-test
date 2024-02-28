@@ -1,9 +1,14 @@
 package io.github.lucklike.api;
 
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
+import com.luckyframework.httpclient.proxy.annotations.ExceptionReturn;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.IgnoreVerifySSL;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
+import com.luckyframework.httpclient.proxy.annotations.StaticCookie;
+import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
+
+import java.util.concurrent.Future;
 
 /**
  * 发送简单请求
@@ -12,6 +17,9 @@ import com.luckyframework.httpclient.proxy.annotations.PathParam;
  * @date 2024/2/24 23:00
  */
 @IgnoreVerifySSL
+@StaticHeader("X-Auth-Token=efueirguheigh84545y989")
+@StaticCookie("SessionID=21432543546567687658")
+@ExceptionReturn("出异常了老铁")
 @DomainName("https://localhost/simple/")
 public interface SimpleApi {
 
@@ -20,7 +28,7 @@ public interface SimpleApi {
         GET http://localhost:8081/simple/sayHello?name=Jack
      */
     @Get("/sayHello")
-    String sayHello(String name);
+    Future<String> sayHello(String name);
 
     /*
         name=Tom
