@@ -1,0 +1,14 @@
+server:
+  port: 8888
+
+lucky:
+  http-client:
+    enable-print-annotation-info: true
+    enable-print-args-info: true
+    print-log-packages:
+      - io.github.lucklike.springboothttp.api.SimpleApi
+
+
+API:
+  location: https://localhost
+  simple: ${API.location}/simple
