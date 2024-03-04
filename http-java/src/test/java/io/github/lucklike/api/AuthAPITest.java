@@ -1,5 +1,8 @@
 package io.github.lucklike.api;
 
+import com.luckyframework.httpclient.core.Header;
+import com.luckyframework.httpclient.core.Response;
+import com.luckyframework.httpclient.proxy.interceptor.CookieManagerInterceptor;
 import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 
@@ -19,6 +22,14 @@ public class AuthAPITest extends TestCase {
         while (true) {
             System.out.println(authAPI.hello());
             Thread.sleep(5000L);
+        }
+    }
+
+    public void testGetToken2() {
+        Response resp = authAPI.getToken2("Jack");
+        for (Header cookieHeader : resp.getCookies()) {
+            CookieManagerInterceptor.ResponseCookie cookie = new CookieManagerInterceptor.ResponseCookie(cookieHeader);
+            System.out.println(cookie);
         }
     }
 }

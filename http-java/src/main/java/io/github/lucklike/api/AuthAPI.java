@@ -45,6 +45,10 @@ public interface AuthAPI {
     @AutomaticRenewalProhibition
     String getToken(String userName);
 
+    @Get("/getToken")
+    @AutomaticRenewalProhibition
+    Response getToken2(String userName);
+
     @SpElSelect("#{{body: $body$.data, cookie: $respCookie$}}")
     @Get("helloUser")
     Map<String, Object> hello();
