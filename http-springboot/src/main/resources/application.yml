@@ -3,10 +3,14 @@ server:
 
 lucky:
   http-client:
-    enable-print-annotation-info: true
-    enable-print-args-info: true
     print-log-packages:
       - io.github.lucklike.springboothttp.api.SimpleApi
+    thread-pool-param:
+      name-format: async-pool-
+      core-pool-size: 5
+      maximum-pool-size: 10
+      blocking-queue-size: 20
+
 
 
 API:

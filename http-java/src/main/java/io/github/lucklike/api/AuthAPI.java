@@ -35,13 +35,13 @@ import java.util.Map;
 
 
 @IgnoreVerifySSL
-//@PrintLogProhibition
+@PrintLogProhibition
 @AuthAPI.AutomaticRenewalToken
 @DomainName("#{$val$.bootHttps}/auth")
 public interface AuthAPI {
 
-    @SpElSelect("#{$body$.data}")
     @Get("/getToken")
+    @SpElSelect("#{$body$.data}")
     @AutomaticRenewalProhibition
     String getToken(String userName);
 
@@ -49,8 +49,8 @@ public interface AuthAPI {
     @AutomaticRenewalProhibition
     Response getToken2(String userName);
 
-    @SpElSelect("#{{body: $body$.data, cookie: $respCookie$}}")
     @Get("helloUser")
+    @SpElSelect("#{{body: $body$.data, cookie: $respCookie$}}")
     Map<String, Object> hello();
 
     @Slf4j
@@ -70,10 +70,10 @@ public interface AuthAPI {
 
         @Override
         public void doBeforeExecute(Request request, InterceptorContext context) {
-            AuthAPI authAPI = (AuthAPI) context.getContext().getProxyObject();
             // 没有登录的情况需要调用登录接口获取token
             if (request.getFirstHeader(tokenKey) == null) {
                 if (getTokenCache() == null) {
+                    AuthAPI authAPI = (AuthAPI) context.getContext().getProxyObject();
                     log.info("No token cache");
                     setTokenCache(authAPI.getToken(NanoIdUtils.randomNanoId(8)));
                 }

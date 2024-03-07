@@ -27,8 +27,8 @@ public abstract class Lucky {
         factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
             log.setAllowPrintLogBodyMaxLength(1000);
 //            log.setReqCondition("false");
-            log.setPrintArgsInfo(true);
-            log.setPrintAnnotationInfo(true);
+//            log.setPrintArgsInfo(true);
+//            log.setPrintAnnotationInfo(true);
         });
         factory.addExpressionParam("serverBoot", "http://localhost:8081");
         factory.addExpressionParam("bootHttps", "https://localhost:443");
@@ -44,7 +44,7 @@ public abstract class Lucky {
     }
 
     public static <T> T createApi(Class<T> apiClass) {
-        return factory.getJdkProxyObject(apiClass);
+        return factory.getCglibProxyObject(apiClass);
     }
 
 
