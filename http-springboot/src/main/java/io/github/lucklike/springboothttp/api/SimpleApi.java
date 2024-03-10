@@ -7,7 +7,6 @@ import io.github.lucklike.httpclient.annotation.HttpClient;
 
 import java.util.concurrent.Future;
 
-@IgnoreVerifySSL
 @HttpClient("${API.simple}")
 public interface SimpleApi {
 

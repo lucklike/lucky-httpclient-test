@@ -3,8 +3,15 @@ server:
 
 lucky:
   http-client:
+    http-executor: okhttp3
+    ignore-ssl-verify: true
+    enable-cookie-manage: true
+    cookie-store-generate:
+      type: com.luckyframework.httpclient.core.CookieStore
+      msg: cookieStore
+    enable-print-annotation-info: true
     print-log-packages:
-      - io.github.lucklike.springboothttp.api.SimpleApi
+      - io.github.lucklike.springboothttp.api
     thread-pool-param:
       name-format: async-pool-
       core-pool-size: 5
@@ -16,3 +23,4 @@ lucky:
 API:
   location: https://localhost
   simple: ${API.location}/simple
+  cookie: ${API.location}/cookie
