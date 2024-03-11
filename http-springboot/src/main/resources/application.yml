@@ -25,3 +25,4 @@ API:
   location: https://localhost
   simple: ${API.location}/simple
   cookie: ${API.location}/cookie
+  user: ${API.location}/user

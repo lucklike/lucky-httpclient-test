@@ -33,4 +33,10 @@ class SpringbootHttpApplicationTests {
         System.out.println(binaryDataAPI.upload3(FileCopyUtils.copyToByteArray(resource.getInputStream())));
     }
 
+    @Test
+    void upload4Test() {
+        System.out.println(binaryDataAPI.upload4("https://tse2-mm.cn.bing.net/th/id/OIP-C.6AX-5XycsrExkSFt0Vc51wHaLH?w=1360&h=2040&rs=1&pid=ImgDetMain"));
+    }
+
+
 }
