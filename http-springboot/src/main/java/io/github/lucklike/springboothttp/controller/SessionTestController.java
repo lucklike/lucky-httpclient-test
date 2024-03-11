@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author fukang
@@ -32,7 +33,7 @@ public class SessionTestController {
     }
 
     @GetMapping("set")
-    public String set() {
+    public List<Map<String, String>> set() {
         return api.set();
     }
 

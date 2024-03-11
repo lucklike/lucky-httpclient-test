@@ -6,6 +6,7 @@ import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
 import io.github.lucklike.httpclient.annotation.HttpClient;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author fukang
@@ -24,8 +25,9 @@ public interface SessionAPI {
     String hello();
 
     @Get("set")
-    String set();
+    @SpElSelect("#{$resp$.getResponseCookies().![{name: name, value: value}]}")
+    List<Map<String, String>> set();
 
-    @Get("${API}/{path}/show")
+    @Get("${API.location}/{path}/show")
     List<String> show(@PathParam String path);
 }

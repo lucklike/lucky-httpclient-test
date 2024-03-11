@@ -50,7 +50,7 @@ public class SessionController {
 
         Cookie cookie = new Cookie("key1", "/cookie/妞妞");
         cookie.setMaxAge(3*60);
-        cookie.setPath("/cookie");
+        cookie.setPath("/cookie/");
 
         // 创建一个 Cookie 对象
         Cookie cookie2 = new Cookie("key2", "/simple/");
