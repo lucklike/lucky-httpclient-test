@@ -1,7 +1,6 @@
 package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.httpclient.proxy.annotations.Get;
-import com.luckyframework.httpclient.proxy.annotations.IgnoreVerifySSL;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import io.github.lucklike.httpclient.annotation.HttpClient;
 
