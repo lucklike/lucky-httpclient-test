@@ -1,8 +1,11 @@
 package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.httpclient.proxy.annotations.Get;
+import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
 import io.github.lucklike.httpclient.annotation.HttpClient;
+
+import java.util.List;
 
 /**
  * @author fukang
@@ -22,4 +25,7 @@ public interface SessionAPI {
 
     @Get("set")
     String set();
+
+    @Get("${API}/{path}/show")
+    List<String> show(@PathParam String path);
 }

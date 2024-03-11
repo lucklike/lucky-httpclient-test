@@ -3,13 +3,11 @@ server:
 
 lucky:
   http-client:
-    http-executor: okhttp3
+    http-executor: jdk
     ignore-ssl-verify: true
     enable-cookie-manage: true
     cookie-store-generate:
-      type: com.luckyframework.httpclient.core.CookieStore
-      msg: cookieStore
-    enable-print-annotation-info: true
+      bean-name: cookieStore
     print-log-packages:
       - io.github.lucklike.springboothttp.api
     thread-pool-param:
