@@ -1,9 +1,11 @@
 package io.github.lucklike.springboothttp;
 
+import com.luckyframework.conversion.ConversionUtils;
 import com.luckyframework.httpclient.core.BodyObject;
 import io.github.lucklike.springboothttp.api.BinaryDataAPI;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.FileCopyUtils;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -16,8 +18,19 @@ class SpringbootHttpApplicationTests {
     private BinaryDataAPI binaryDataAPI;
 
     @Test
-    void contextLoads() throws IOException {
-        binaryDataAPI.upload(BodyObject.byteBody(new File("C:\\Users\\18143\\Pictures\\Screenshots\\屏幕截图 2024-01-16 094607.png")));
+    void uploadTest() throws IOException {
+        System.out.println(binaryDataAPI.upload(BodyObject.byteBody("https://file.moyublog.com/d/file/2021-02-21/751d49d91fe63a565dff18b3b97ca7c8.jpg")));
+    }
+
+    @Test
+    void upload2Test() {
+        System.out.println(binaryDataAPI.upload2("https://file.moyublog.com/d/file/2021-02-21/751d49d91fe63a565dff18b3b97ca7c8.jpg"));
+    }
+
+    @Test
+    void upload3Test() throws IOException {
+        org.springframework.core.io.Resource resource = ConversionUtils.conversion("https://ts1.cn.mm.bing.net/th/id/R-C.5d0c289d1219b6663b9432bcb3fd96d4?rik=mVNpEwZk0wHdEQ&riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f017b1b57f455c7a84a0e282bee54c3.jpg%403000w_1l_2o_100sh.jpg&ehk=8rEwMuLV1vuG7ibHvrC0ygdapp6NPMSc1Fu5irZqD40%3d&risl=&pid=ImgRaw&r=0", org.springframework.core.io.Resource.class);
+        System.out.println(binaryDataAPI.upload3(FileCopyUtils.copyToByteArray(resource.getInputStream())));
     }
 
 }
