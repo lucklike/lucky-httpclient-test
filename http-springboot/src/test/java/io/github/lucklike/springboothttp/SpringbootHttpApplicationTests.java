@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.FileCopyUtils;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.io.IOException;
 
 @SpringBootTest
