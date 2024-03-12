@@ -26,3 +26,4 @@ API:
   simple: ${API.location}/simple
   cookie: ${API.location}/cookie
   user: ${API.location}/user
+  file: ${API.location}/file

@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 
 @RestController
 public class BinaryDataController {
+
+    @Resource(name = "savePath")
+    private String savePath;
 
     @PostMapping("/upload")
     public String handleFileUpload(@RequestBody byte[] fileData) throws IOException {
@@ -20,7 +24,7 @@ public class BinaryDataController {
         // 例如，保存到文件系统或数据库等
         String mimeType = ContentTypeUtils.getMimeType(fileData);
         String fileExtension = ContentTypeUtils.getFileExtension(mimeType);
-        String filePath = StringUtils.format("/Users/fukang/Desktop/test/{}.{}", NanoIdUtils.randomNanoId(5), fileExtension);
+        String filePath = StringUtils.format("{}/{}.{}", savePath, NanoIdUtils.randomNanoId(5), fileExtension);
         FileCopyUtils.copy(fileData, new File(filePath));
         return filePath;
     }
