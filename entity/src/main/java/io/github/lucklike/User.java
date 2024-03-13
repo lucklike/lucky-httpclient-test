@@ -2,6 +2,8 @@ package io.github.lucklike;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 用户实体类
  * @author fukang
@@ -9,7 +11,7 @@ import lombok.Data;
  * @date 2024/2/24 22:41
  */
 @Data
-public class User {
+public class User implements Serializable {
 
     private Integer id;
     private String username;

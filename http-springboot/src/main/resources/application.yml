@@ -27,3 +27,4 @@ API:
   cookie: ${API.location}/cookie
   user: ${API.location}/user
   file: ${API.location}/file
+  java: ${API.location}/java
