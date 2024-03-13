@@ -1,6 +1,7 @@
 package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.common.NanoIdUtils;
+import com.luckyframework.httpclient.core.Request;
 import io.github.lucklike.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

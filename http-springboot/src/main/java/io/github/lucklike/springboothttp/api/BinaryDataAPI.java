@@ -3,6 +3,8 @@ package io.github.lucklike.springboothttp.api;
 import com.luckyframework.httpclient.core.BodyObject;
 import com.luckyframework.httpclient.proxy.annotations.BinaryBody;
 import com.luckyframework.httpclient.proxy.annotations.FormParam;
+import com.luckyframework.httpclient.proxy.annotations.MultiDataParam;
+import com.luckyframework.httpclient.proxy.annotations.MultiFileParam;
 import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.StaticBinaryBody;
@@ -21,7 +23,8 @@ public interface BinaryDataAPI {
     String upload2(@BinaryBody String url);
 
     @Post("upload")
-    String upload3(byte[] bytes);
+    String upload3(@MultiFileParam(name = "cdsscFILE", fileName = "i12.jpg") byte[] file,
+                   @MultiDataParam("fefwfw") String kk);
 
     @StaticBinaryBody("#{url}")
     @Post("upload")
