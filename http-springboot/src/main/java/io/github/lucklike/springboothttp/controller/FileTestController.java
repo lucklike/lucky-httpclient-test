@@ -21,8 +21,8 @@ public class FileTestController {
     @Resource
     private FileAPI api;
 
-    @PostMapping("upload")
-    public Result<List<String>> upload(@RequestBody String paths)  {
+    @GetMapping("upload")
+    public Result<List<String>> upload(String paths)  {
         return api.upload(paths);
     }
 

@@ -2,13 +2,15 @@ package io.github.lucklike.resp;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author fukang
  * @version 1.0.0
  * @date 2024/3/2 21:42
  */
 @Data
-public class Result<T> {
+public class Result<T> implements Serializable {
 
     private String code;
     private String message;

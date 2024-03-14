@@ -3,7 +3,7 @@ server:
 
 lucky:
   http-client:
-    http-executor: jdk
+    http-executor: http_client
     ignore-ssl-verify: true
     enable-cookie-manage: true
     cookie-store-generate:

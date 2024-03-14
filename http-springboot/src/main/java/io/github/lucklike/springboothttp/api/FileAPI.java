@@ -1,6 +1,7 @@
 package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.httpclient.proxy.annotations.Get;
+import com.luckyframework.httpclient.proxy.annotations.MultiFile;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.ResourceParam;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface FileAPI {
 
     @Post("upload")
-    Result<List<String>> upload(@ResourceParam("files") String path);
+    Result<List<String>> upload(@MultiFile("files") String path);
 
     @Get("preview/{fileName}")
     byte[] preview(@PathParam String fileName);

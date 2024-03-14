@@ -33,7 +33,7 @@ public class JavaSerializableController {
 
         response.setContentType("application/x-java-serialized-object");
         ServletOutputStream outputStream = response.getOutputStream();
-        FileCopyUtils.copy(jdkScheme.toByte(user), outputStream);
+        FileCopyUtils.copy(jdkScheme.toByte(Result.success(user)), outputStream);
     }
 
     @PutMapping("putObject")

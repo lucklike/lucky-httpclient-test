@@ -13,6 +13,6 @@ public class FileAPITest {
 
     @Test
     void uploadTest() {
-        System.out.println(fileAPI.upload("file:/Users/fukang/Pictures/*.*"));
+        System.out.println(fileAPI.upload("file:C:/Users/18143/Pictures/Saved Pictures/*.*"));
     }
 }
