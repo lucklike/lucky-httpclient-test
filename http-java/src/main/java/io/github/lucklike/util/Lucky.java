@@ -32,7 +32,7 @@ public abstract class Lucky {
         });
         factory.addExpressionParam("serverBoot", "http://localhost:8081");
         factory.addExpressionParam("bootHttps", "https://localhost:443");
-        factory.setHttpExecutor(new OkHttp3Executor());
+        factory.setHttpExecutor(new JdkHttpExecutor());
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //
 //        try {

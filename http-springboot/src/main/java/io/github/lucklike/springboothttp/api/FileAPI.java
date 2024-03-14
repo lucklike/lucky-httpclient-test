@@ -4,7 +4,6 @@ import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.MultiFile;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
-import com.luckyframework.httpclient.proxy.annotations.ResourceParam;
 import io.github.lucklike.httpclient.annotation.HttpClient;
 import io.github.lucklike.resp.Result;
 

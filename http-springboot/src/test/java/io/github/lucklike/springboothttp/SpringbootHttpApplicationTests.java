@@ -47,7 +47,7 @@ class SpringbootHttpApplicationTests {
     @Test
     void upload5Test() throws IOException {
         InputStream in = Files.newInputStream(Paths.get("D:\\data\\htdev\\arch\\archivefiles\\20240306\\10009KS_0132_1765183737473474560.pdf"));
-        System.out.println(binaryDataAPI.upload5(in));
+        System.out.println(binaryDataAPI.upload5(in,"10009KS_0132_1765183737473474560.pdf"));
     }
 
     @Test

@@ -7,6 +7,7 @@ import com.luckyframework.httpclient.proxy.annotations.MultiData;
 import com.luckyframework.httpclient.proxy.annotations.MultiFile;
 import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
+import com.luckyframework.httpclient.proxy.annotations.Retryable;
 import com.luckyframework.httpclient.proxy.annotations.StaticBinaryBody;
 import io.github.lucklike.httpclient.annotation.HttpClient;
 
@@ -23,7 +24,7 @@ public interface BinaryDataAPI {
     String upload2(@BinaryBody String url);
 
     @Post("upload")
-    String upload3(@MultiFile(name = "cdsscFILE", fileName = "i12.jpg") byte[] file,
+    String upload3(@MultiFile byte[] file,
                    @MultiData("fefwfw") String kk);
 
     @StaticBinaryBody("#{url}")
@@ -31,7 +32,8 @@ public interface BinaryDataAPI {
     String upload4(@NotHttpParam String url);
 
     @Post("upload")
-    String upload5(@MultiFile(name = "file", fileName = "wer.pdf") InputStream in);
+    String upload5(@MultiFile(name = "file", fileName = "#{p1}") InputStream in,
+                   @NotHttpParam String fileName);
 
     @Post("upload")
     String upload6(File file);

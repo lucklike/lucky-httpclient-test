@@ -28,7 +28,7 @@ public class AuthAPITest extends TestCase {
     public void testGetToken2() {
         Response resp = authAPI.getToken2("Jack");
         for (Header cookieHeader : resp.getCookies()) {
-            ClientCookie cookie = new ClientCookie(cookieHeader, resp);
+            ClientCookie cookie = new ClientCookie(cookieHeader, resp.getRequest());
             System.out.println(cookie);
         }
     }
