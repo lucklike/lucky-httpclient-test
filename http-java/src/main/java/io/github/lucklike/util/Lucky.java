@@ -3,6 +3,7 @@ package io.github.lucklike.util;
 import com.luckyframework.httpclient.core.executor.HttpClientExecutor;
 import com.luckyframework.httpclient.core.executor.JdkHttpExecutor;
 import com.luckyframework.httpclient.core.executor.OkHttp3Executor;
+import com.luckyframework.httpclient.core.executor.OkHttpExecutor;
 import com.luckyframework.httpclient.core.ssl.SSLUtils;
 import com.luckyframework.httpclient.core.ssl.TrustAllHostnameVerifier;
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
@@ -32,7 +33,7 @@ public abstract class Lucky {
         });
         factory.addExpressionParam("serverBoot", "http://localhost:8081");
         factory.addExpressionParam("bootHttps", "https://localhost:443");
-        factory.setHttpExecutor(new JdkHttpExecutor());
+        factory.setHttpExecutor(new HttpClientExecutor());
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //
 //        try {

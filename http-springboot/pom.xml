@@ -58,6 +58,13 @@
             <artifactId>httpmime</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.dtflys.forest</groupId>
+            <artifactId>forest-spring-boot-starter</artifactId>
+            <version>1.5.33</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

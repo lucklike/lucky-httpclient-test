@@ -1,5 +1,7 @@
 package io.github.lucklike.springboothttp.api;
 
+import com.dtflys.forest.Forest;
+import com.dtflys.forest.http.ForestProxy;
 import com.luckyframework.common.NanoIdUtils;
 import io.github.lucklike.User;
 import junit.framework.TestCase;
