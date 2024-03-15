@@ -14,4 +14,14 @@ public class TestAPITest {
         System.out.println(api.test().get());
     }
 
+    @Test
+    public void test2() {
+       api.test1("Jack", 123);
+    }
+
+    @Test
+    public void test3() {
+        api.test2(new String[]{"Jack", "Tom", "Karl"});
+    }
+
 }
