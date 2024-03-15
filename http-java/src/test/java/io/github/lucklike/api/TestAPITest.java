@@ -22,6 +22,8 @@ public class TestAPITest {
     @Test
     public void test3() {
         api.test2(new String[]{"Jack", "Tom", "Karl"});
+        api.test1("Jack", 123);
+        api.test1("Jack", 123);
     }
 
 }

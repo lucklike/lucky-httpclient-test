@@ -4,6 +4,7 @@ import com.luckyframework.common.StringUtils;
 import com.luckyframework.httpclient.proxy.annotations.ArgHandle;
 import com.luckyframework.httpclient.proxy.annotations.DynamicParam;
 import com.luckyframework.httpclient.proxy.annotations.Get;
+import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import com.luckyframework.httpclient.proxy.annotations.QueryParam;
 import com.luckyframework.httpclient.proxy.annotations.UseProxy;
@@ -25,8 +26,8 @@ public interface TestAPI {
     @Get("http://www.baidu.com")
     void test1(String name1, Integer name2);
 
-    @Get("http://www.baidu.com?{arr}")
-    void test2(@PathParam("arr") @ArgHandle("#{$this$.getArrayStr('array', _value_)}") String[] array);
+    @Get("http://www.baidu.com?#{$this$.getArrayStr('array', array)}")
+    void test2(@NotHttpParam String[] array);
 
     default String getArrayStr(String prefix, String[] array) {
         List<String> elementList = new ArrayList<>();

@@ -8,6 +8,7 @@ import com.luckyframework.httpclient.core.ssl.SSLUtils;
 import com.luckyframework.httpclient.core.ssl.TrustAllHostnameVerifier;
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
 import com.luckyframework.httpclient.proxy.creator.Scope;
+import com.luckyframework.httpclient.proxy.interceptor.CookieManagerInterceptor;
 import com.luckyframework.httpclient.proxy.interceptor.PrintLogInterceptor;
 
 import javax.net.ssl.SSLEngine;
@@ -31,6 +32,7 @@ public abstract class Lucky {
 //            log.setPrintArgsInfo(true);
 //            log.setPrintAnnotationInfo(true);
         });
+        factory.addInterceptor(CookieManagerInterceptor.class, Scope.SINGLETON, 100);
         factory.addExpressionParam("serverBoot", "http://localhost:8081");
         factory.addExpressionParam("bootHttps", "https://localhost:443");
         factory.setHttpExecutor(new JdkHttpExecutor());
