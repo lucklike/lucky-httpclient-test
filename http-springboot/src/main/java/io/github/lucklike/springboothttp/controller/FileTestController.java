@@ -22,7 +22,7 @@ public class FileTestController {
     private FileAPI api;
 
     @GetMapping("upload")
-    public Result<List<String>> upload(String paths)  {
+    public Result<List<String>> upload(String[] paths)  {
         return api.upload(paths);
     }
 

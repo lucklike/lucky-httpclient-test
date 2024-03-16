@@ -7,6 +7,7 @@ import com.luckyframework.httpclient.proxy.annotations.IgnoreVerifySSL;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import com.luckyframework.httpclient.proxy.annotations.StaticCookie;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
+import com.luckyframework.httpclient.proxy.annotations.URLEncoder;
 
 import java.util.concurrent.Future;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.Future;
  * @version 1.0.0
  * @date 2024/2/24 23:00
  */
+@URLEncoder
 @IgnoreVerifySSL
 @StaticHeader("X-Auth-Token=efueirguheigh84545y989")
 @StaticCookie("SessionID=21432543546567687658")
@@ -34,6 +36,7 @@ public interface SimpleApi {
         name=Tom
         GET http://localhost:8081/simple/hi/Tom
  */
-    @Get("/hi/{name}")
-    String hi(@PathParam String name);
+    @Get("/hi/{name}{kk}")
+    @PathParam
+    String hi(Object name, Object kk);
 }

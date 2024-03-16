@@ -1,5 +1,6 @@
 package io.github.lucklike.api;
 
+import com.luckyframework.common.StopWatch;
 import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 
@@ -20,8 +21,11 @@ public class SimpleApiTest extends TestCase {
     }
 
     public void testHi() {
-        System.out.println(api.hi("Tom"));
-        System.out.println(api.hi("爱因斯坦"));
+        StopWatch sw = new StopWatch();
+        sw.start("call");
+        System.out.println(api.hi(api.sayHello("八嘎呀路"), api.sayHello("八嘎呀路")));
+        sw.stopWatch();
+        System.out.println(sw.prettyPrintMillis());
     }
 
 }
