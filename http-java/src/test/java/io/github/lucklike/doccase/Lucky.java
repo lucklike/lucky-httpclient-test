@@ -1,7 +1,6 @@
 package io.github.lucklike.doccase;
 
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
-import com.luckyframework.httpclient.proxy.interceptor.CookieManagerInterceptor;
 
 /**
  * 复杂代理对象生成的工具类
@@ -12,7 +11,7 @@ import com.luckyframework.httpclient.proxy.interceptor.CookieManagerInterceptor;
  */
 public class Lucky {
 
-    private static HttpClientProxyObjectFactory factory;
+    private static final HttpClientProxyObjectFactory factory;
 
     static {
         factory = new HttpClientProxyObjectFactory();
