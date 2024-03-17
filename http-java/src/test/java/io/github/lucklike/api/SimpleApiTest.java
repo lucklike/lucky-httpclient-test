@@ -1,6 +1,7 @@
 package io.github.lucklike.api;
 
 import com.luckyframework.common.StopWatch;
+import io.github.lucklike.testcase.api.SimpleApi;
 import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 

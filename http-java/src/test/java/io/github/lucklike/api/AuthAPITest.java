@@ -3,6 +3,7 @@ package io.github.lucklike.api;
 import com.luckyframework.httpclient.core.ClientCookie;
 import com.luckyframework.httpclient.core.Header;
 import com.luckyframework.httpclient.core.Response;
+import io.github.lucklike.testcase.api.AuthAPI;
 import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 

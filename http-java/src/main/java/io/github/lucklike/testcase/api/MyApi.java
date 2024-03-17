@@ -1,4 +1,4 @@
-package io.github.lucklike.api;
+package io.github.lucklike.testcase.api;
 
 import com.luckyframework.httpclient.proxy.annotations.HttpRequest;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;

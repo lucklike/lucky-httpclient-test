@@ -1,5 +1,6 @@
 package io.github.lucklike.api;
 
+import io.github.lucklike.testcase.api.DynamicAddressApi;
 import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 

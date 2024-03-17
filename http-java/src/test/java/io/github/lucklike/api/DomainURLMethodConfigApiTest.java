@@ -1,6 +1,7 @@
 package io.github.lucklike.api;
 
 import com.luckyframework.httpclient.core.RequestMethod;
+import io.github.lucklike.testcase.api.DomainURLMethodConfigApi;
 import io.github.lucklike.util.Lucky;
 import junit.framework.TestCase;
 

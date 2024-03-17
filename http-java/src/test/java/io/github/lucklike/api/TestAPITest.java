@@ -1,5 +1,6 @@
 package io.github.lucklike.api;
 
+import io.github.lucklike.testcase.api.TestAPI;
 import io.github.lucklike.util.Lucky;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package io.github.lucklike.api;
+package io.github.lucklike.testcase.api;
 
 import com.luckyframework.common.StringUtils;
 import com.luckyframework.httpclient.proxy.annotations.ArgHandle;
