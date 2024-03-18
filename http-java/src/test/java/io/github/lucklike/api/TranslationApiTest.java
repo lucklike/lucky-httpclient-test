@@ -16,6 +16,7 @@ public class TranslationApiTest {
     @Test
     public void test() {
         System.out.println(api.trans("妞妞是一只很聪明的棕色小狗。"));
+        System.out.println(api.trans("好好学习，天天向上。"));
     }
 
 }
