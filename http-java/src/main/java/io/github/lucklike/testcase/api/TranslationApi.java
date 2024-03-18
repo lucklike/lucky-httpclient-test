@@ -11,6 +11,7 @@ import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
 import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.context.Context;
 import com.luckyframework.serializable.SerializationSchemeFactory;
+import io.github.lucklike.util.SM4Util;
 
 /**
  *
@@ -19,8 +20,8 @@ import com.luckyframework.serializable.SerializationSchemeFactory;
  * @date 2024/3/17 23:11
  */
 @SpELVar({
-        "appid=#{$this$.piDecode('~°e¨\u0084}xj\u0085\u008C\u007Fh\u0080')}",
-        "privatekey=#{$this$.piDecode('~Úh©°xze\u0087\u0084\u0082j~\u0084\u0085\u0095³{\u009Eg\u007F\u0087±q\u0084Üf°~yz\u0092²\u0085ª\u0098\u0081\u008D\u0083j')}",
+        "appid=#{$this$.SM4('a94edf938ecd3a2a8ca013bd800b52ad')}",
+        "privatekey=#{$this$.SM4('b2482869665723323117ea6d00de9818833788eecce62cbfe88f6baeb23eb08ef59031af1aece287fe54e8b6c383eb3f')}",
         "nonce_str=huihuhihui"
 })
 @DomainName("https://www.fanyigou.com")
@@ -51,7 +52,7 @@ public interface TranslationApi {
         return NanoIdUtils.randomNanoId();
     }
 
-    default String piDecode(String s) {
-       return EncryptionUtils.piDecode(s);
+    default String SM4(String s) throws Exception {
+       return SM4Util.decryptEcb(s);
     }
 }

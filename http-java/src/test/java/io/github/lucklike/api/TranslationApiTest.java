@@ -11,11 +11,11 @@ import org.junit.Test;
  */
 public class TranslationApiTest {
 
-    private TranslationApi api = Lucky.createApi(TranslationApi.class);
+    private final TranslationApi api = Lucky.createApi(TranslationApi.class);
 
     @Test
     public void test() {
-        System.out.println(api.trans("妞妞是一只很听话的小狗狗。"));
+        System.out.println(api.trans("妞妞是一只很聪明的棕色小狗。"));
     }
 
 }
