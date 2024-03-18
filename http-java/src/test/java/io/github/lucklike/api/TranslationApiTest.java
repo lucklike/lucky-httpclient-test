@@ -17,4 +17,5 @@ public class TranslationApiTest {
     public void test() {
         System.out.println(api.trans("妞妞是一只很听话的小狗狗。"));
     }
+
 }
