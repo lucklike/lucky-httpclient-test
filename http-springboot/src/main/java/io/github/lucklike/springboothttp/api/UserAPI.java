@@ -29,7 +29,7 @@ public interface UserAPI {
     @Put("put")
     void putForm(@FormParam User user);
 
-    @StaticFormBody("id=2&username=罗艳玲&password=😋3额3&age=23&email=234@qq.com")
+    @StaticFormBody("id=2&username=付大康&password=😋3额3&age=23&email=234@qq.com")
     @Put("put")
     void putStaticForm();
 
@@ -39,7 +39,7 @@ public interface UserAPI {
     @StaticJsonBody(
             "{" +
                 "id:43," +
-                "username:罗雁姝," +
+                "username:参数," +
                 "password:'${API.user}', " +
                 "email:#{id}@cc.com, " +
                 "age:22" +
