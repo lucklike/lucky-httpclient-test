@@ -13,6 +13,10 @@ import com.luckyframework.httpclient.proxy.context.Context;
 import com.luckyframework.serializable.SerializationSchemeFactory;
 import io.github.lucklike.util.SM4Util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author fukang
@@ -21,26 +25,22 @@ import io.github.lucklike.util.SM4Util;
  */
 public interface TranslationApi extends FanYiGouApi {
 
+    @Post("/TranslateApi/api/trans")
     @SpElSelect("#{$this$.fromJson($body$).data.transResult}")
-    @StaticHeader("abc=#{abc}")
-    @StaticQuery({"from=zh", "to=en", "nonce_str=#{nonce_str}", "token=#{$this$.getToken($mc$, text)}"})
-    @Post("/TranslateApi/api/trans?appid=#{appid}")
+    @StaticQuery({
+            "appid=#{appid}",
+            "from=zh", "to=en",
+            "nonce_str=#{nonce_str}",
+            "token=#{" +
+                    "$this$.getToken({" +
+                            "to: 'en', " +
+                            "from: 'zh', " +
+                            "appid: appid, " +
+                            "nonce_str: nonce_str, " +
+                            "privatekey: privatekey, " +
+                            "text: text})" +
+                    "}"
+    })
     String trans(String text);
-
-    default String getToken(Context context, String text) {
-        String stringA = StringUtils.format(
-                "appid=#{appid}&" +
-                        "from=zh&" +
-                        "nonce_str=#{nonce_str}&" +
-                        "privatekey=#{privatekey}&" +
-                        "text={}&" +
-                        "to=en", text);
-        stringA = context.parseExpression(stringA, String.class);
-        return DigestUtil.md5Hex(stringA).toUpperCase();
-    }
-
-    default Object fromJson(String jsonStr) throws Exception {
-       return SerializationSchemeFactory.getJsonScheme().deserialization(jsonStr, Object.class);
-    }
 
 }
