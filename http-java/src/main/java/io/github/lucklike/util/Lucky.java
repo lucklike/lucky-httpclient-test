@@ -30,7 +30,7 @@ public abstract class Lucky {
             log.setAllowPrintLogBodyMaxLength(1000);
 //            log.setReqCondition("false");
 //            log.setPrintArgsInfo(true);
-//            log.setPrintAnnotationInfo(true);
+            log.setPrintAnnotationInfo(true);
         });
         factory.addInterceptor(CookieManagerInterceptor.class, Scope.SINGLETON, 100);
         factory.addExpressionParam("serverBoot", "http://localhost:8081");
