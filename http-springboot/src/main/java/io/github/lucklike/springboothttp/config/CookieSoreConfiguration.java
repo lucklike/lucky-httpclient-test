@@ -1,4 +1,4 @@
-package io.github.lucklike.springboothttp.comfig;
+package io.github.lucklike.springboothttp.config;
 
 import com.luckyframework.httpclient.core.CookieStore;
 import com.luckyframework.httpclient.core.MemoryCookieStore;

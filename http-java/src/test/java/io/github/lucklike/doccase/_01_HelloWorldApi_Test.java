@@ -10,12 +10,7 @@ import org.junit.Test;
  */
 public class _01_HelloWorldApi_Test {
 
-    private _01_HelloWorldApi api;
-
-    {
-        HttpClientProxyObjectFactory factory = new HttpClientProxyObjectFactory();
-        api = factory.getJdkProxyObject(_01_HelloWorldApi.class);
-    }
+    private final _01_HelloWorldApi api = Lucky.getApi(_01_HelloWorldApi.class);
 
     @Test
     public void baiduTest() {

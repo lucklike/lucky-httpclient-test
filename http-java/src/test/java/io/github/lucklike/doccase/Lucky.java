@@ -1,6 +1,8 @@
 package io.github.lucklike.doccase;
 
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
+import com.luckyframework.httpclient.proxy.creator.Scope;
+import com.luckyframework.httpclient.proxy.interceptor.PrintLogInterceptor;
 
 /**
  * 复杂代理对象生成的工具类
@@ -15,6 +17,14 @@ public class Lucky {
 
     static {
         factory = new HttpClientProxyObjectFactory();
+        factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
+            log.setAllowPrintLogBodyMaxLength(1000);
+//            log.setReqCondition("false");
+//            log.setPrintArgsInfo(true);
+//            log.setPrintAnnotationInfo(true);
+        });
+        factory.addExpressionParam("serverBootHttp", "http://localhost:8081/");
+        factory.addExpressionParam("serverBootHttps", "https://localhost/");
     }
 
     public static <T> T getApi(Class<T> apiClass){

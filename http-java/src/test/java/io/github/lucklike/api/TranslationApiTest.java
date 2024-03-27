@@ -15,7 +15,7 @@ public class TranslationApiTest {
 
     @Test
     public void test() {
-        System.out.println(api.trans("一切都是有尽头的。"));
+        System.out.println(api.trans("人都是自私的！"));
     }
 
 }

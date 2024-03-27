@@ -2,7 +2,6 @@ package io.github.lucklike.doccase;
 
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.HttpRequest;
-import com.luckyframework.httpclient.proxy.annotations.PrintRequestLog;
 
 import static com.luckyframework.httpclient.core.RequestMethod.GET;
 
@@ -13,7 +12,6 @@ import static com.luckyframework.httpclient.core.RequestMethod.GET;
  * @version 1.0.0
  * @date 2024/3/17 13:12
  */
-@PrintRequestLog
 public interface _01_HelloWorldApi {
 
     /*

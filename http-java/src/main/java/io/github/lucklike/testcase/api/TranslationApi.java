@@ -11,7 +11,7 @@ import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
  */
 public interface TranslationApi extends FanYiGouApi {
 
-    @SpElSelect("#{$this$.fromJson($body$).data.transResult}")
+//    @SpElSelect("#{$this$.fromJson($body$).data.transResult}")
     @Post("/TranslateApi/api/trans?from=zh&to=en")
     String trans(String text);
 }

@@ -1,10 +1,16 @@
+
+# HTTPS
+#server:
+#  port: 443
+#  http-port: 8081
+#  ssl:
+#    enabled: true
+#    key-store: classpath:tomcat_https.keystore
+#    key-store-type: JKS
+#    key-alias: tomcat_https
+#    key-password: 123456
+#    key-store-password: 123456
+
+# HTTP
 server:
-  port: 443
-  http-port: 8081
-  ssl:
-    enabled: true
-    key-store: classpath:tomcat_https.keystore
-    key-store-type: JKS
-    key-alias: tomcat_https
-    key-password: 123456
-    key-store-password: 123456
+  port: 8081

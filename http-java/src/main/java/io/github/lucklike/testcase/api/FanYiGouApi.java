@@ -1,13 +1,20 @@
 package io.github.lucklike.testcase.api;
 
 import cn.hutool.crypto.digest.DigestUtil;
+import com.luckyframework.common.ConfigurationMap;
 import com.luckyframework.common.NanoIdUtils;
 import com.luckyframework.common.StringUtils;
+import com.luckyframework.conversion.ConversionUtils;
+import com.luckyframework.exception.LuckyRuntimeException;
 import com.luckyframework.httpclient.core.Request;
+import com.luckyframework.httpclient.core.Response;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
+import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
 import com.luckyframework.httpclient.proxy.annotations.SpELVar;
+import com.luckyframework.httpclient.proxy.convert.ConvertContext;
+import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
 import com.luckyframework.serializable.SerializationSchemeFactory;
@@ -26,6 +33,7 @@ import java.util.Map;
         "nonce_str=#{$this$.nanoId()}"
 })
 @DomainName("https://www.fanyigou.com")
+@ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)
 public interface FanYiGouApi {
 
@@ -87,6 +95,18 @@ public interface FanYiGouApi {
             }
             String stringA = StringUtils.join(elementList, "&");
             return DigestUtil.md5Hex(stringA).toUpperCase();
+        }
+    }
+
+    class Convert implements ResponseConvert {
+
+        @Override
+        public <T> T convert(Response response, ConvertContext context) throws Throwable {
+            ConfigurationMap resultMap = response.jsonStrToConfigMap();
+            if (resultMap.containsConfigKey("code") && resultMap.getInt("code") == 0) {
+                return ConversionUtils.conversion(resultMap.getProperty("data.transResult"), context.getRealMethodReturnType());
+            }
+            throw new LuckyRuntimeException("翻译失败！【({}) {}】",resultMap.getInt("code"), resultMap.getString("msg"));
         }
     }
 }
