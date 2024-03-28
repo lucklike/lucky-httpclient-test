@@ -4,6 +4,9 @@ import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.QueryParam;
 
+/**
+ * 域名注解的使用
+ */
 @DomainName("http://localhost:8081/query/")
 public interface _03_DomainNameApi {
 

@@ -1,5 +1,7 @@
 package io.github.lucklike.doccase;
 
+import com.luckyframework.httpclient.core.executor.HttpClientExecutor;
+import com.luckyframework.httpclient.core.executor.OkHttp3Executor;
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
 import com.luckyframework.httpclient.proxy.creator.Scope;
 import com.luckyframework.httpclient.proxy.interceptor.PrintLogInterceptor;
