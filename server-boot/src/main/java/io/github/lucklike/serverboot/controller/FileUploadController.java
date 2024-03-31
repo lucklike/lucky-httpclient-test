@@ -30,7 +30,7 @@ public class FileUploadController {
     @Resource(name = "savePath")
     private String savePath;
 
-    @PostMapping("upload")
+    @PostMapping("upload1")
     public Result<List<String>> upload(MultipartFile[] files) throws IOException {
         List<String> previewList = new ArrayList<>(files.length);
         int i = 1;
@@ -43,7 +43,7 @@ public class FileUploadController {
         return Result.success(previewList);
     }
 
-    @GetMapping("preview/{fileName}")
+    @GetMapping("preview1/{fileName}")
     public void preview(
             HttpServletResponse response,
             @PathVariable("fileName") String fileName

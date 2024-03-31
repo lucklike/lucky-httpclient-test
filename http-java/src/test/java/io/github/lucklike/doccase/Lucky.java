@@ -25,8 +25,6 @@ public class Lucky {
 //            log.setPrintArgsInfo(true);
 //            log.setPrintAnnotationInfo(true);
         });
-        factory.addExpressionParam("serverBootHttp", "http://localhost:8081/");
-        factory.addExpressionParam("serverBootHttps", "https://localhost/");
     }
 
     public static <T> T getApi(Class<T> apiClass){

@@ -2,6 +2,7 @@ package io.github.lucklike;
 
 import lombok.Data;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -10,6 +11,8 @@ import java.io.Serializable;
  * @version 1.0.0
  * @date 2024/2/24 22:41
  */
+
+@XmlRootElement
 @Data
 public class User implements Serializable {
 
