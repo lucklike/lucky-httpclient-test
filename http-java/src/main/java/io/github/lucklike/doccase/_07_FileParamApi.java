@@ -1,5 +1,6 @@
 package io.github.lucklike.doccase;
 
+import com.luckyframework.httpclient.core.ResponseProcessor;
 import com.luckyframework.httpclient.proxy.annotations.BinaryBody;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.Get;
@@ -86,12 +87,15 @@ public interface _07_FileParamApi {
     @StaticHeader("fileName=#{file.getName()}")
     Result<String> binaryUpload(@BinaryBody File file);
 
-
     @Get("preview/{fileName}")
     byte[] preview(@PathParam String fileName);
 
     @Get("preview/{fileName}")
     MultipartFile preview2(@PathParam String fileName);
 
-
+    /*
+        可以使用ResponseProcessor来操作原始数据流，大文件下载时推荐使用
+     */
+    @Get("preview/{fileName}")
+    void preview3(@PathParam String fileName, ResponseProcessor processor);
 }

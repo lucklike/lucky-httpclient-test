@@ -1,10 +1,13 @@
 package io.github.lucklike.doccase;
 
+import com.luckyframework.httpclient.core.ResponseMetaData;
+import com.luckyframework.httpclient.core.ResponseProcessor;
 import com.luckyframework.io.MultipartFile;
 import org.junit.Test;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -51,5 +54,16 @@ public class _07_FileParamApiTest {
     public void preview2() throws IOException {
         MultipartFile mf = api.preview2("7ef9c4ef902854a89af881815f5339bc.jpg");
         mf.copyToFolder("/Users/fukang/Pictures/");
+    }
+
+    @Test
+    public void preview3() {
+        api.preview3("7ef9c4ef902854a89af881815f5339bc.jpg", metaData -> {
+            int status = metaData.getStatus();
+            if (status == 200) {
+                FileOutputStream out = new FileOutputStream("D:/test/" + metaData.getDownloadFilename());
+                FileCopyUtils.copy(metaData.getInputStream(), out);
+            }
+        });
     }
 }
