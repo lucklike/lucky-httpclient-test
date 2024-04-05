@@ -29,8 +29,8 @@ public abstract class Lucky {
         factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
             log.setAllowPrintLogBodyMaxLength(1000);
 //            log.setReqCondition("false");
-//            log.setPrintArgsInfo(true);
-//            log.setPrintAnnotationInfo(true);
+            log.setPrintArgsInfo(true);
+            log.setPrintAnnotationInfo(true);
         });
 //        factory.addInterceptor(CookieManagerInterceptor.class, Scope.SINGLETON, 100);
         factory.addExpressionParam("serverBoot", "http://localhost:8081");

@@ -17,7 +17,6 @@ import java.util.Map;
 /**
  * @author fukang
  * @version 1.0.0
- * @PathParam注解使用说明
  * @date 2024/3/30 01:05
  */
 @DomainName("http://localhost:8081/other/")
