@@ -19,7 +19,7 @@ public class MyApiTest {
     @Test
     public void indexTest() throws ExecutionException, InterruptedException {
         String indexContent = myApi.index().get();
-        System.out.println(indexContent);
+        System.out.println(indexContent.substring(0, 1000) + "......");
     }
 
     @Test

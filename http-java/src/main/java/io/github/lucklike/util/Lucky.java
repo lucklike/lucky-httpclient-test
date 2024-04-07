@@ -1,5 +1,6 @@
 package io.github.lucklike.util;
 
+import com.luckyframework.common.ConfigurationMap;
 import com.luckyframework.httpclient.core.executor.HttpClientExecutor;
 import com.luckyframework.httpclient.core.executor.JdkHttpExecutor;
 import com.luckyframework.httpclient.core.executor.OkHttp3Executor;
@@ -35,6 +36,10 @@ public abstract class Lucky {
 //        factory.addInterceptor(CookieManagerInterceptor.class, Scope.SINGLETON, 100);
         factory.addExpressionParam("serverBoot", "http://localhost:8081");
         factory.addExpressionParam("bootHttps", "https://localhost:443");
+
+        ConfigurationMap headerMap = new ConfigurationMap();
+        headerMap.put("Accept-Encoding", "gzip, deflate, br, zstd");
+        factory.setHeaders(headerMap);
 //        factory.setHttpExecutor(new OkHttp3Executor());
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //

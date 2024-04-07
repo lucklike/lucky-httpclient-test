@@ -3,8 +3,12 @@ package io.github.lucklike.testcase.api;
 import com.luckyframework.httpclient.proxy.annotations.AutoRedirect;
 import com.luckyframework.httpclient.proxy.annotations.BrotliCompress;
 import com.luckyframework.httpclient.proxy.annotations.BrowserFeign;
+import com.luckyframework.httpclient.proxy.annotations.ContentCompress;
+import com.luckyframework.httpclient.proxy.annotations.DeflateCompress;
+import com.luckyframework.httpclient.proxy.annotations.GzipCompress;
 import com.luckyframework.httpclient.proxy.annotations.HttpRequest;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
+import com.luckyframework.httpclient.proxy.annotations.ZstdCompress;
 
 import java.util.concurrent.Future;
 
@@ -26,8 +30,7 @@ public interface MyApi {
     	GET http://www.baidu.com
 	    User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_301)
      */
-    @BrotliCompress
-    @HttpRequest(url = "http://www.bilibili.com/", method = GET)
+    @HttpRequest(url = "https://7zip.ydqyxx.cn/", method = GET)
     Future<String> index();
 
     /*
