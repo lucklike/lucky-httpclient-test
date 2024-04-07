@@ -15,7 +15,7 @@ public class _02_QueryParamApi_Test {
 
     @Test
     public void sayHelloTest() {
-        System.out.println(api.sayHello("Jack"));
+        System.out.println(api.sayHello("error"));
     }
 
     @Test

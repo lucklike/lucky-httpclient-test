@@ -4,6 +4,8 @@ import io.github.lucklike.testcase.api.MyApi;
 import io.github.lucklike.util.Lucky;
 import org.junit.Test;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * {@link MyApi}的测试类
  *
@@ -15,8 +17,8 @@ public class MyApiTest {
     private final MyApi myApi = Lucky.createApi(MyApi.class);
 
     @Test
-    public void indexTest() {
-        String indexContent = myApi.index();
+    public void indexTest() throws ExecutionException, InterruptedException {
+        String indexContent = myApi.index().get();
         System.out.println(indexContent);
     }
 
