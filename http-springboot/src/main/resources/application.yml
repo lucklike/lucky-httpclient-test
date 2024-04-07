@@ -16,13 +16,15 @@ lucky:
       maximum-pool-size: 10
       blocking-queue-size: 20
     auto-redirect: true
+    enable-content-compress: true
+    interceptor-generates:
 
 
 
 
 API:
-#  location: http://localhost:8081
-  location: https://localhost
+  location: http://localhost:8081
+#  location: https://localhost
   simple: ${API.location}/simple
   cookie: ${API.location}/cookie
   user: ${API.location}/user
