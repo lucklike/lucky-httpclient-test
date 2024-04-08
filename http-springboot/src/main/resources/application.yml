@@ -17,7 +17,6 @@ lucky:
       blocking-queue-size: 20
     auto-redirect: true
     enable-content-compress: true
-    interceptor-generates:
 
 
 

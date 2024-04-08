@@ -30,7 +30,8 @@ public interface MyApi {
     	GET http://www.baidu.com
 	    User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_301)
      */
-    @HttpRequest(url = "https://7zip.ydqyxx.cn/", method = GET)
+
+    @HttpRequest(url = "http://www.bilibili.com/", method = GET)
     Future<String> index();
 
     /*
