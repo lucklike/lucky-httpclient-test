@@ -6,6 +6,7 @@ import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.Put;
+import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
 import com.luckyframework.httpclient.proxy.annotations.StaticCookie;
 import com.luckyframework.httpclient.proxy.annotations.StaticForm;
 import com.luckyframework.httpclient.proxy.annotations.StaticFormBody;
@@ -53,9 +54,10 @@ public interface _10_StaticParamAnnotationApi {
         User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_391)
         Cookie: username=JackCheng
      */
-    @StaticCookie({"username=JackCheng"})
+    @SpElSelect("#{{$body$[0], $body$[2]}}")
+    @StaticCookie({"username=JackCheng", "hello=世界", "password=123456"})
     @Put("other/cookie")
-    String cookie();
+    String[] cookie();
 
     /*
         PUT http://localhost:8081/other/form

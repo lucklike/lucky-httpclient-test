@@ -36,14 +36,14 @@ public class OtherParamTestController {
     }
 
     @PutMapping("cookie")
-    public String cookie(HttpServletRequest request) {
+    public String[] cookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
+        String[] cookieStrArr = new String[cookies.length];
+        int i = 0;
         for (Cookie cookie : cookies) {
-            if ("username".equals(cookie.getName())) {
-                return StringUtils.format("cookie username is {}", cookie.getValue());
-            }
+            cookieStrArr[i++] =  StringUtils.format("cookie {} is {}", cookie.getName(), cookie.getValue());
         }
-        return "non cookie";
+        return cookieStrArr;
     }
 
     @PutMapping("form")

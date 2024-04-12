@@ -27,7 +27,7 @@ public class _10_StaticParamAnnotationApiTest {
 
     @Test
     public void cookie() {
-        System.out.println(api.cookie());
+        System.out.println(Arrays.toString(api.cookie()));
     }
 
     @Test

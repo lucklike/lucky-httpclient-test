@@ -36,11 +36,8 @@ public abstract class Lucky {
 //        factory.addInterceptor(CookieManagerInterceptor.class, Scope.SINGLETON, 100);
         factory.addExpressionParam("serverBoot", "http://localhost:8081");
         factory.addExpressionParam("bootHttps", "https://localhost:443");
-
-        ConfigurationMap headerMap = new ConfigurationMap();
-        headerMap.put("Accept-Encoding", "gzip, deflate, br, zstd");
-        factory.setHeaders(headerMap);
-//        factory.setHttpExecutor(new OkHttp3Executor());
+        factory.addHeader("Accept-Encoding", "gzip, deflate, br, zstd");
+        factory.setHttpExecutor(new OkHttp3Executor());
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //
 //        try {
@@ -52,7 +49,7 @@ public abstract class Lucky {
     }
 
     public static <T> T createApi(Class<T> apiClass) {
-        return factory.getCglibProxyObject(apiClass);
+        return factory.getJdkProxyObject(apiClass);
     }
 
 

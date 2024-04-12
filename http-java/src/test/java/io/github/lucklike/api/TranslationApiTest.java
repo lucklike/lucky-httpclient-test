@@ -15,7 +15,7 @@ public class TranslationApiTest {
 
     @Test
     public void test() {
-        System.out.println(api.trans("坚持下去吧，坚持住！"));
+        System.out.println(api.trans("钵钵鸡，一元一串的钵钵鸡！"));
     }
 
 }
