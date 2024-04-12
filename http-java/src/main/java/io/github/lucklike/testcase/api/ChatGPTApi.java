@@ -9,6 +9,7 @@ import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.StaticJsonBody;
 
 @SpELVar({
+        "frefer=",
         "model=text-davinci-003",
         "maxTokens=50",
         "temperature=0.5"

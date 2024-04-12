@@ -19,7 +19,7 @@ public class Lucky {
     private static final HttpClientProxyObjectFactory factory;
 
     static {
-        factory = new HttpClientProxyObjectFactory();
+        factory = new HttpClientProxyObjectFactory(new HttpClientExecutor());
         factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
             log.setAllowPrintLogBodyMaxLength(1000);
 //            log.setReqCondition("false");
