@@ -31,6 +31,7 @@ lucky:
     spring-el-root-variables:
       appId: ${fanYiGou.config.appId}
       privateKey: ${fanYiGou.config.privateKey}
+      nonceStr: ${fanYiGou.config.nonce_str}
 
 
 
@@ -51,3 +52,4 @@ fanYiGou:
   config:
     appId: "#{#SM4('${fanYiGou.appId}')}"
     privateKey: "#{#SM4('${fanYiGou.privateKey}')}"
+    nonce_str: "#{#nanoId()}"

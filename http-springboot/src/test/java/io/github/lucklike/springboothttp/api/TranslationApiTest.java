@@ -16,5 +16,6 @@ class TranslationApiTest {
     @Test
     void trans() {
         System.out.println(api.trans("你好，世界！"));
+        System.out.println(api.trans("你好，世界！"));
     }
 }

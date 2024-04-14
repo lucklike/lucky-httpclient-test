@@ -28,11 +28,11 @@ import java.util.Map;
 /**
  * 翻译狗API
  */
-@SpELVar({
+//@SpELVar({
 //        "appid=${fanYiGou.config.appId}",
 //        "privatekey=${fanYiGou.config.privateKey}",
-        "nonce_str=#{#NanoIdSize(5)}"
-})
+//        "nonce_str=#{#NanoIdSize(5)}"
+//})
 @DomainName("https://www.fanyigou.com")
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)
@@ -80,11 +80,11 @@ public interface FanYiGouApi {
     class TokenInterceptor implements Interceptor {
         @Override
         public void doBeforeExecute(Request request, InterceptorContext context) {
-            request.addQueryParameter("nonce_str", context.parseExpression("#{nonce_str}"));
+            request.addQueryParameter("nonce_str", context.parseExpression("#{nonceStr}"));
             request.addQueryParameter("appid", context.parseExpression("#{appId}"));
             Map<String, Object> queryMap = request.getSimpleQueries();
 
-            queryMap.put("privatekey", context.parseExpression("#{privatekey}"));
+            queryMap.put("privatekey", context.parseExpression("#{privateKey}"));
             String token = getToken(queryMap);
             request.addQueryParameter("token", token);
         }
