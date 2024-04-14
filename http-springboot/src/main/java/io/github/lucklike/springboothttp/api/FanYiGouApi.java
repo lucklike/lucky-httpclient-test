@@ -13,6 +13,7 @@ import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
 import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
 import com.luckyframework.httpclient.proxy.annotations.SpELVar;
+import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
@@ -28,11 +29,8 @@ import java.util.Map;
 /**
  * 翻译狗API
  */
-//@SpELVar({
-//        "appid=${fanYiGou.config.appId}",
-//        "privatekey=${fanYiGou.config.privateKey}",
-//        "nonce_str=#{#NanoIdSize(5)}"
-//})
+
+@StaticQuery({"nonce_str=#{#nonceStr}", "appid=#{#appId}"})
 @DomainName("https://www.fanyigou.com")
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)
@@ -47,14 +45,6 @@ public interface FanYiGouApi {
         return NanoIdUtils.randomNanoId();
     }
 
-    @StaticMethodAlias("NanoIdSize")
-    static String nanoId(int s){
-        return NanoIdUtils.randomNanoId(s);
-    }
-
-    static void set(String...s) {
-
-    }
 
     /**
      * SM4解密算法
@@ -80,11 +70,8 @@ public interface FanYiGouApi {
     class TokenInterceptor implements Interceptor {
         @Override
         public void doBeforeExecute(Request request, InterceptorContext context) {
-            request.addQueryParameter("nonce_str", context.parseExpression("#{nonceStr}"));
-            request.addQueryParameter("appid", context.parseExpression("#{appId}"));
             Map<String, Object> queryMap = request.getSimpleQueries();
-
-            queryMap.put("privatekey", context.parseExpression("#{privateKey}"));
+            queryMap.put("privatekey", context.getSpElVariable("privateKey"));
             String token = getToken(queryMap);
             request.addQueryParameter("token", token);
         }

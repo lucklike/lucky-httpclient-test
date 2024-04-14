@@ -28,7 +28,7 @@ lucky:
       - prefix: SF_
         clazz: io.github.lucklike.springboothttp.utils.SpELFunction
       - clazz: io.github.lucklike.springboothttp.api.FanYiGouApi
-    spring-el-root-variables:
+    spring-el-variables:
       appId: ${fanYiGou.config.appId}
       privateKey: ${fanYiGou.config.privateKey}
       nonceStr: ${fanYiGou.config.nonce_str}
