@@ -11,9 +11,13 @@ import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
 import com.luckyframework.httpclient.proxy.creator.Scope;
 import com.luckyframework.httpclient.proxy.interceptor.CookieManagerInterceptor;
 import com.luckyframework.httpclient.proxy.interceptor.PrintLogInterceptor;
+import com.luckyframework.reflect.ClassUtils;
+import com.luckyframework.reflect.MethodUtils;
+import io.github.lucklike.testcase.api.FanYiGouApi;
 
 import javax.net.ssl.SSLEngine;
 import javax.net.ssl.X509ExtendedTrustManager;
+import java.lang.reflect.Method;
 import java.net.Socket;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -34,10 +38,16 @@ public abstract class Lucky {
 //            log.setPrintAnnotationInfo(true);
         });
 //        factory.addInterceptor(CookieManagerInterceptor.class, Scope.SINGLETON, 100);
-        factory.addExpressionParam("serverBoot", "http://localhost:8081");
-        factory.addExpressionParam("bootHttps", "https://localhost:443");
+        factory.addSpringElRootVariable("serverBoot", "http://localhost:8081");
+        factory.addSpringElRootVariable("bootHttps", "https://localhost:443");
         factory.addHeader("Accept-Encoding", "gzip, deflate, br, zstd");
         factory.setHttpExecutor(new OkHttp3Executor());
+
+        factory.addSpringElFunctionClass(FanYiGouApi.class);
+
+        Class<?> [] classes = {String[].class};
+        Method declaredMethod = MethodUtils.getDeclaredMethod(FanYiGouApi.class, "set", classes);
+        System.out.println(declaredMethod);
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //
 //        try {

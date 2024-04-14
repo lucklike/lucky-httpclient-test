@@ -16,8 +16,8 @@ public class _09_SpEL_$val$_ApiTest {
 
     {
         HttpClientProxyObjectFactory factory = new HttpClientProxyObjectFactory();
-        factory.addExpressionParam("serverBootHttp", "http://localhost:8081");
-        factory.addExpressionParam("helloApi", "/query/sayHello");
+        factory.addSpringElRootVariable("serverBootHttp", "http://localhost:8081");
+        factory.addSpringElRootVariable("helloApi", "/query/sayHello");
 
         api = factory.getJdkProxyObject(_09_SpEL_$val$_Api.class);
     }

@@ -16,7 +16,7 @@ import io.github.lucklike.httpclient.annotation.HttpClientComponent;
 @HttpClientComponent
 public interface JavaSerializableAPI2 extends ServerBootApi {
 
-    @Get("/java/getObject")
+    @Get("#{#SF_URL('java', 'getObject')}")
     User getObject();
 
     @Put("/java/putObject")

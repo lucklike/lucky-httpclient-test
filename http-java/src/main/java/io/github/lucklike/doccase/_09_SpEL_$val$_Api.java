@@ -12,9 +12,9 @@ import com.luckyframework.httpclient.proxy.annotations.PrintLog;
  * @date 2024/3/31 00:57
  */
 @PrintLog
-@DomainName("#{$val$.serverBootHttp}")
+@DomainName("#{serverBootHttp}")
 public interface _09_SpEL_$val$_Api {
 
-    @Get("#{$val$.helloApi}")
+    @Get("#{helloApi}")
     String sayHello(String name);
 }

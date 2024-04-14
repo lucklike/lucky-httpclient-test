@@ -1,7 +1,6 @@
 package io.github.lucklike.testcase.api;
 
 import com.luckyframework.httpclient.proxy.annotations.Post;
-import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
 
 /**
  *
@@ -11,7 +10,6 @@ import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
  */
 public interface TranslationApi extends FanYiGouApi {
 
-//    @SpElSelect("#{$this$.fromJson($body$).data.transResult}")
     @Post("/TranslateApi/api/trans?from=zh&to=en")
     String trans(String text);
 }

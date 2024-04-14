@@ -17,6 +17,7 @@ import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
+import com.luckyframework.httpclient.proxy.spel.StaticMethodAlias;
 import com.luckyframework.serializable.SerializationSchemeFactory;
 import io.github.lucklike.util.SM4Util;
 
@@ -28,9 +29,9 @@ import java.util.Map;
  * 翻译狗API
  */
 @SpELVar({
-        "appid=#{$this$.SM4('a94edf938ecd3a2a8ca013bd800b52ad')}",
-        "privatekey=#{$this$.SM4('b2482869665723323117ea6d00de9818833788eecce62cbfe88f6baeb23eb08ef59031af1aece287fe54e8b6c383eb3f')}",
-        "nonce_str=#{$this$.nanoId()}"
+        "appid=#{#SM4('a94edf938ecd3a2a8ca013bd800b52ad')}",
+        "privatekey=#{#SM4('b2482869665723323117ea6d00de9818833788eecce62cbfe88f6baeb23eb08ef59031af1aece287fe54e8b6c383eb3f')}",
+        "nonce_str=#{#NanoIdSize(5)}"
 })
 @DomainName("https://www.fanyigou.com")
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
@@ -42,8 +43,17 @@ public interface FanYiGouApi {
      * 生成NanoId随机字符串
      * @return NanoId随机字符串
      */
-    default String nanoId(){
+    static String nanoId(){
         return NanoIdUtils.randomNanoId();
+    }
+
+    @StaticMethodAlias("NanoIdSize")
+    static String nanoId(int s){
+        return NanoIdUtils.randomNanoId(s);
+    }
+
+    static void set(String...s) {
+
     }
 
     /**
@@ -51,7 +61,7 @@ public interface FanYiGouApi {
      * @param s SM4加密后的字符串
      * @return 加密前的明文
      */
-    default String SM4(String s) throws Exception {
+    static String SM4(String s) throws Exception {
         return SM4Util.decryptEcb(s);
     }
 
@@ -60,7 +70,8 @@ public interface FanYiGouApi {
      * @param jsonStr json字符串
      * @return 转化后的Java对象
      */
-    default Object fromJson(String jsonStr) throws Exception {
+    @StaticMethodAlias("JSON")
+    static Object fromJson(String jsonStr) throws Exception {
         return SerializationSchemeFactory.getJsonScheme().deserialization(jsonStr, Object.class);
     }
     /**

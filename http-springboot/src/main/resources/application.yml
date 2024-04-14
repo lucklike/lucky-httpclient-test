@@ -17,6 +17,16 @@ lucky:
       blocking-queue-size: 20
     auto-redirect: true
     enable-content-compress: true
+    spring-el-functions:
+      - alias: join
+        clazz: com.luckyframework.common.StringUtils
+        method: format
+        param-types:
+          - java.lang.String
+          - java.lang.Object[]
+    spring-el-function-classes:
+      - prefix: SF_
+        clazz: io.github.lucklike.springboothttp.utils.SpELFunction
 
 
 

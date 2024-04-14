@@ -4,8 +4,7 @@ import com.luckyframework.common.ConfigurationMap;
 import com.luckyframework.common.DateUtils;
 import com.luckyframework.spel.ParamWrapper;
 import com.luckyframework.spel.SpELRuntime;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
+
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
@@ -28,35 +27,35 @@ public class Main {
     }
 
 
-    private static void webSocketTest() throws URISyntaxException {
-        URI wsURI = new URI("ws://localhost:8081/websocket");
-        WebSocketClient client = new WebSocketClient(wsURI) {
-            @Override
-            public void onOpen(ServerHandshake serverHandshake) {
-
-            }
-
-            @Override
-            public void onMessage(String s) {
-                System.out.println("receive message: " + s);
-            }
-
-            @Override
-            public void onClose(int i, String s, boolean b) {
-
-            }
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-        };
-
-        client.connect();
-        for(;;) {
-            client.send("hello" + DateUtils.showtime());
-        }
-    }
+//    private static void webSocketTest() throws URISyntaxException {
+//        URI wsURI = new URI("ws://localhost:8081/websocket");
+//        WebSocketClient client = new WebSocketClient(wsURI) {
+//            @Override
+//            public void onOpen(ServerHandshake serverHandshake) {
+//
+//            }
+//
+//            @Override
+//            public void onMessage(String s) {
+//                System.out.println("receive message: " + s);
+//            }
+//
+//            @Override
+//            public void onClose(int i, String s, boolean b) {
+//
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
+//        };
+//
+//        client.connect();
+//        for(;;) {
+//            client.send("hello" + DateUtils.showtime());
+//        }
+//    }
 
     private static void spELTest() throws NoSuchMethodException {
         //定义2个函数,registerFunction和setVariable都可以，不过从语义上面来看用registerFunction更恰当
@@ -75,10 +74,13 @@ public class Main {
         System.out.println(result1);
 
         SpELRuntime spELRuntime = new SpELRuntime();
+        Map<String, Object> rootMap = new HashMap<>();
+        rootMap.put("toInt", parseInt);
 
-        int parseInt2 = spELRuntime.getValueForType(new ParamWrapper("#parseInt2('3')")
+        Object parseInt2 = spELRuntime.getValueForType(new ParamWrapper("")
+                        .setRootObject(rootMap)
                 .addVariable("parseInt2", parseInt)
-                .setExpectedResultType(int.class));
+                .setExpectedResultType(Object.class));
         System.out.println(parseInt2);
     }
 }
