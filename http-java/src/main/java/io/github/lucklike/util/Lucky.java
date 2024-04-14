@@ -45,9 +45,6 @@ public abstract class Lucky {
 
         factory.addSpringElFunctionClass(FanYiGouApi.class);
 
-        Class<?> [] classes = {String[].class};
-        Method declaredMethod = MethodUtils.getDeclaredMethod(FanYiGouApi.class, "set", classes);
-        System.out.println(declaredMethod);
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //
 //        try {

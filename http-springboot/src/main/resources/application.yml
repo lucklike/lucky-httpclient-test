@@ -27,6 +27,11 @@ lucky:
     spring-el-function-classes:
       - prefix: SF_
         clazz: io.github.lucklike.springboothttp.utils.SpELFunction
+      - clazz: io.github.lucklike.springboothttp.api.FanYiGouApi
+    spring-el-root-variables:
+      appId: ${fanYiGou.config.appId}
+      privateKey: ${fanYiGou.config.privateKey}
+
 
 
 
@@ -39,3 +44,10 @@ API:
   user: ${API.location}/user
   file: ${API.location}/file
   java: ${API.location}/java
+
+fanYiGou:
+  appId: a94edf938ecd3a2a8ca013bd800b52ad
+  privateKey: b2482869665723323117ea6d00de9818833788eecce62cbfe88f6baeb23eb08ef59031af1aece287fe54e8b6c383eb3f
+  config:
+    appId: "#{#SM4('${fanYiGou.appId}')}"
+    privateKey: "#{#SM4('${fanYiGou.privateKey}')}"
