@@ -18,9 +18,6 @@ import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
 import io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
