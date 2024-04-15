@@ -36,7 +36,6 @@ lucky:
       appId: ${fanYiGou.config.appId}
       privateKey: ${fanYiGou.config.privateKey}
       nonceStr: ${fanYiGou.config.nonce_str}
-    spring-el-function-annotation: Anno
 
 
 
