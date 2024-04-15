@@ -16,6 +16,12 @@ import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
 import io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils;
+import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +32,19 @@ import java.util.Map;
  */
 @DomainName("https://www.fanyigou.com")
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
-@InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)
+@InterceptorRegister(intercept = @ObjectGenerate(clazz = FanYiGouApi.TokenInterceptor.class, msg = "tokenInterceptor"), priority = 99)
 public interface FanYiGouApi {
 
     /**
      * Token参数拦截器，用于生成Token
      */
+    @Component("tokenInterceptor")
     class TokenInterceptor implements Interceptor {
+
+        @Value("${fanYiGou.sm4.appId}")
+        private String sm4_appId;
+        @Value("${fanYiGou.sm4.privateKey}")
+        private String sm4_private_key;
 
         private String privateKey;
         private String appId;
@@ -55,6 +67,7 @@ public interface FanYiGouApi {
 
         /**
          * 获取接口访问所必须的token
+         *
          * @param paramMap 参与token加密的参数Map
          * @return token
          */
@@ -72,16 +85,18 @@ public interface FanYiGouApi {
             return DigestUtil.md5Hex(stringA).toUpperCase();
         }
 
+        @SneakyThrows
         public String getPrivateKey(InterceptorContext context) {
             if (privateKey == null) {
-                privateKey = context.getSpElVariable("SM4('${fanYiGou.sm4.privateKey}')", String.class);
+                privateKey = SpELFunctionUtils.SM4(sm4_private_key);
             }
             return privateKey;
         }
 
+        @SneakyThrows
         public String getAppId(InterceptorContext context) {
             if (appId == null) {
-                appId = context.getSpElVariable("SM4('${fanYiGou.sm4.appId}')", String.class);
+                appId = SpELFunctionUtils.SM4(sm4_appId);
             }
             return appId;
         }
@@ -95,7 +110,7 @@ public interface FanYiGouApi {
             if (resultMap.containsConfigKey("code") && resultMap.getInt("code") == 0) {
                 return ConversionUtils.conversion(resultMap.getProperty("data.transResult"), context.getRealMethodReturnType());
             }
-            throw new LuckyRuntimeException("翻译失败！【({}) {}】",resultMap.getInt("code"), resultMap.getString("msg"));
+            throw new LuckyRuntimeException("翻译失败！【({}) {}】", resultMap.getInt("code"), resultMap.getString("msg"));
         }
     }
 }
