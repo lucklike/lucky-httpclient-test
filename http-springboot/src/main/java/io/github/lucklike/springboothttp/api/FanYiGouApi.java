@@ -50,12 +50,12 @@ public interface FanYiGouApi {
         public void doBeforeExecute(Request request, InterceptorContext context) {
 
             // 补充参数appid、nonce_str
-            request.addQueryParameter("appid", getAppId(context));
+            request.addQueryParameter("appid", getAppId());
             request.addQueryParameter("nonce_str", SpELFunctionUtils.nanoId());
 
             // 获取当前请求的Query参数Map，并加入privateKey，用于生成Token
             Map<String, Object> queryMap = request.getSimpleQueries();
-            queryMap.put("privatekey", getPrivateKey(context));
+            queryMap.put("privatekey", getPrivateKey());
             String token = getToken(queryMap);
 
             //  补充参数token
@@ -83,7 +83,7 @@ public interface FanYiGouApi {
         }
 
         @SneakyThrows
-        public String getPrivateKey(InterceptorContext context) {
+        public String getPrivateKey() {
             if (privateKey == null) {
                 privateKey = SpELFunctionUtils.SM4(sm4_private_key);
             }
@@ -91,7 +91,7 @@ public interface FanYiGouApi {
         }
 
         @SneakyThrows
-        public String getAppId(InterceptorContext context) {
+        public String getAppId() {
             if (appId == null) {
                 appId = SpELFunctionUtils.SM4(sm4_appId);
             }
