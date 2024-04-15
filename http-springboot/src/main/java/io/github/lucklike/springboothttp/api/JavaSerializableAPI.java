@@ -4,14 +4,14 @@ import com.luckyframework.httpclient.proxy.annotations.ConvertProhibition;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.JavaBody;
 import com.luckyframework.httpclient.proxy.annotations.Put;
-import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
+import com.luckyframework.httpclient.proxy.annotations.ResponseSelect;
 import com.luckyframework.httpclient.proxy.annotations.StaticCookie;
 import com.luckyframework.httpclient.proxy.annotations.URLEncoder;
 import io.github.lucklike.User;
 import io.github.lucklike.httpclient.annotation.HttpClient;
 
 @URLEncoder
-@SpElSelect("#{$body$.data}")
+@ResponseSelect("#{$body$.data}")
 @HttpClient("${API.java}")
 public interface JavaSerializableAPI {
 
@@ -23,7 +23,7 @@ public interface JavaSerializableAPI {
     User putObject(@JavaBody User user);
 
     @ConvertProhibition
-    @StaticCookie({"fu=kang","你好=世界"})
+    @StaticCookie({"fu=kang", "你好=世界"})
     @Get("test")
     void test();
 }

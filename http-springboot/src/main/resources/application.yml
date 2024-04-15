@@ -3,20 +3,26 @@ server:
 
 lucky:
   http-client:
-    http-executor: http_client
+    http-executor: jdk
     ignore-ssl-verify: true
     enable-cookie-manage: true
+    cookie-manage-priority: 1001
     cookie-store-generate:
       bean-name: cookieStore
     print-log-packages:
       - io.github.lucklike.springboothttp.api
+    enable-print-annotation-info: true
+    print-log-priority: 10000
     thread-pool-param:
-      name-format: async-pool-
+      name-format: http-pool-
       core-pool-size: 5
       maximum-pool-size: 10
       blocking-queue-size: 20
     auto-redirect: true
+    redirect-priority: 101
     enable-content-compress: true
+    spring-el-function-packages:
+      - io.github.lucklike.springboothttp.api.spel.function
     spring-el-functions:
       - alias: join
         clazz: com.luckyframework.common.StringUtils
@@ -24,14 +30,18 @@ lucky:
         param-types:
           - java.lang.String
           - java.lang.Object[]
-    spring-el-function-classes:
-      - prefix: SF_
-        clazz: io.github.lucklike.springboothttp.utils.SpELFunction
-      - clazz: io.github.lucklike.springboothttp.api.FanYiGouApi
-    spring-el-variables:
+#    spring-el-function-classes:
+#      - clazz: io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils
+    spring-el-root-variables:
       appId: ${fanYiGou.config.appId}
       privateKey: ${fanYiGou.config.privateKey}
       nonceStr: ${fanYiGou.config.nonce_str}
+    spring-el-function-annotation: Anno
+
+
+
+
+
 
 
 

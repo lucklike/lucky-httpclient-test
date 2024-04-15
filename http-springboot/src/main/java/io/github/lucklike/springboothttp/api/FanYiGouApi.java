@@ -2,7 +2,6 @@ package io.github.lucklike.springboothttp.api;
 
 import cn.hutool.crypto.digest.DigestUtil;
 import com.luckyframework.common.ConfigurationMap;
-import com.luckyframework.common.NanoIdUtils;
 import com.luckyframework.common.StringUtils;
 import com.luckyframework.conversion.ConversionUtils;
 import com.luckyframework.exception.LuckyRuntimeException;
@@ -12,15 +11,11 @@ import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
 import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
-import com.luckyframework.httpclient.proxy.annotations.SpELVar;
 import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
-import com.luckyframework.httpclient.proxy.spel.StaticMethodAlias;
-import com.luckyframework.serializable.SerializationSchemeFactory;
-import io.github.lucklike.util.SM4Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,41 +24,12 @@ import java.util.Map;
 /**
  * 翻译狗API
  */
-
-@StaticQuery({"nonce_str=#{#nonceStr}", "appid=#{#appId}"})
 @DomainName("https://www.fanyigou.com")
+@StaticQuery({"nonce_str=#{nonceStr}", "appid=#{appId}"})
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)
 public interface FanYiGouApi {
 
-
-    /**
-     * 生成NanoId随机字符串
-     * @return NanoId随机字符串
-     */
-    static String nanoId(){
-        return NanoIdUtils.randomNanoId();
-    }
-
-
-    /**
-     * SM4解密算法
-     * @param s SM4加密后的字符串
-     * @return 加密前的明文
-     */
-    static String SM4(String s) throws Exception {
-        return SM4Util.decryptEcb(s);
-    }
-
-    /**
-     * 用于将Json字符串转为Java对象
-     * @param jsonStr json字符串
-     * @return 转化后的Java对象
-     */
-    @StaticMethodAlias("JSON")
-    static Object fromJson(String jsonStr) throws Exception {
-        return SerializationSchemeFactory.getJsonScheme().deserialization(jsonStr, Object.class);
-    }
     /**
      * Token参数拦截器，用于生成Token
      */
@@ -71,7 +37,7 @@ public interface FanYiGouApi {
         @Override
         public void doBeforeExecute(Request request, InterceptorContext context) {
             Map<String, Object> queryMap = request.getSimpleQueries();
-            queryMap.put("privatekey", context.getSpElVariable("privateKey"));
+            queryMap.put("privatekey", context.getSpElRootVariable("privateKey"));
             String token = getToken(queryMap);
             request.addQueryParameter("token", token);
         }

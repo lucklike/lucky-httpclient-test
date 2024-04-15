@@ -5,7 +5,7 @@ import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.JsonBody;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.Put;
-import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
+import com.luckyframework.httpclient.proxy.annotations.ResponseSelect;
 import com.luckyframework.httpclient.proxy.annotations.StaticFormBody;
 import com.luckyframework.httpclient.proxy.annotations.StaticJsonBody;
 import io.github.lucklike.User;
@@ -19,7 +19,7 @@ import io.github.lucklike.httpclient.annotation.HttpClient;
 @HttpClient("${API.user}")
 public interface UserAPI {
 
-    @SpElSelect("#{$body$.data}")
+    @ResponseSelect("#{$body$.data}")
     @Get("get")
     User get();
 

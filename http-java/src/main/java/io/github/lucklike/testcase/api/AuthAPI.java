@@ -10,7 +10,7 @@ import com.luckyframework.httpclient.proxy.annotations.IgnoreVerifySSL;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
 import com.luckyframework.httpclient.proxy.annotations.PrintLogProhibition;
-import com.luckyframework.httpclient.proxy.annotations.SpElSelect;
+import com.luckyframework.httpclient.proxy.annotations.ResponseSelect;
 import com.luckyframework.httpclient.proxy.creator.Scope;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
@@ -40,7 +40,7 @@ import java.util.Map;
 public interface AuthAPI {
 
     @Get("/getToken")
-    @SpElSelect("#{$body$.data}")
+    @ResponseSelect("#{$body$.data}")
     @AutomaticRenewalProhibition
     String getToken(String userName);
 
@@ -49,7 +49,7 @@ public interface AuthAPI {
     Response getToken2(String userName);
 
     @Get("helloUser")
-    @SpElSelect("#{{body: $body$.data, cookie: $respCookie$}}")
+    @ResponseSelect("#{{body: $body$.data, cookie: $respCookie$}}")
     Map<String, Object> hello();
 
     @Slf4j
