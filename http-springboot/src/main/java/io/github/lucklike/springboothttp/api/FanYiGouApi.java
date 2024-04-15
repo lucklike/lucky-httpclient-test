@@ -11,11 +11,11 @@ import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
 import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
-import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
+import io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,6 @@ import java.util.Map;
  * 翻译狗API
  */
 @DomainName("https://www.fanyigou.com")
-@StaticQuery({"nonce_str=#{nonceStr}", "appid=#{appId}"})
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)
 public interface FanYiGouApi {
@@ -34,11 +33,23 @@ public interface FanYiGouApi {
      * Token参数拦截器，用于生成Token
      */
     class TokenInterceptor implements Interceptor {
+
+        private String privateKey;
+        private String appId;
+
         @Override
         public void doBeforeExecute(Request request, InterceptorContext context) {
+
+            // 补充参数appid、nonce_str
+            request.addQueryParameter("appid", getAppId(context));
+            request.addQueryParameter("nonce_str", SpELFunctionUtils.nanoId());
+
+            // 获取当前请求的Query参数Map，并加入privateKey，用于生成Token
             Map<String, Object> queryMap = request.getSimpleQueries();
-            queryMap.put("privatekey", context.getSpElRootVariable("privateKey"));
+            queryMap.put("privatekey", getPrivateKey(context));
             String token = getToken(queryMap);
+
+            //  补充参数token
             request.addQueryParameter("token", token);
         }
 
@@ -59,6 +70,20 @@ public interface FanYiGouApi {
             }
             String stringA = StringUtils.join(elementList, "&");
             return DigestUtil.md5Hex(stringA).toUpperCase();
+        }
+
+        public String getPrivateKey(InterceptorContext context) {
+            if (privateKey == null) {
+                privateKey = context.getSpElVariable("SM4('${fanYiGou.sm4.privateKey}')", String.class);
+            }
+            return privateKey;
+        }
+
+        public String getAppId(InterceptorContext context) {
+            if (appId == null) {
+                appId = context.getSpElVariable("SM4('${fanYiGou.sm4.appId}')", String.class);
+            }
+            return appId;
         }
     }
 

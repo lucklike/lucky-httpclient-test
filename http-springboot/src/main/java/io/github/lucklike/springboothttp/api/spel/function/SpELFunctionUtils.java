@@ -3,6 +3,7 @@ package io.github.lucklike.springboothttp.api.spel.function;
 import com.luckyframework.common.NanoIdUtils;
 import com.luckyframework.common.StringUtils;
 import com.luckyframework.httpclient.proxy.spel.FunctionAlias;
+import com.luckyframework.httpclient.proxy.spel.FunctionFilter;
 import com.luckyframework.serializable.SerializationSchemeFactory;
 import io.github.lucklike.httpclient.annotation.SpELFunction;
 import io.github.lucklike.util.SM4Util;
@@ -36,7 +37,7 @@ public class SpELFunctionUtils {
      * 生成NanoId随机字符串
      * @return NanoId随机字符串
      */
-    @FunctionAlias("nanoId")
+    @FunctionFilter
     public static String nanoId(){
         return NanoIdUtils.randomNanoId();
     }
