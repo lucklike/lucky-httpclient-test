@@ -12,7 +12,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Arrays;
 
-public  class SM4Util  {
+public class SM4Util {
 
     static {
         Security.addProvider(new BouncyCastleProvider());
@@ -26,6 +26,10 @@ public  class SM4Util  {
     public static final String ALGORITHM_NAME_ECB_PADDING = "SM4/ECB/PKCS5Padding";
     // 128-32位16进制；256-64位16进制
     public static final int DEFAULT_KEY_SIZE = 128;
+
+    private static final String key = "7e2b04ac0f1c0c2933cb1f8d4a11cf35";
+
+    private static final String SM4_STR_PREFIX = "sm4:";
 
     /**
      * 生成ECB暗号
@@ -164,18 +168,83 @@ public  class SM4Util  {
         return flag;
     }
 
-    private static final String key = "7e2b04ac0f1c0c2933cb1f8d4a11cf35";
-
+    /**
+     * sm4加密
+     *
+     * @param data 数据
+     * @return 加密后的数据
+     * @throws Exception 加密失败抛出的异常
+     */
     public static String encryptEcb(String data) throws Exception {
         return encryptEcb(key, data);
     }
 
+    /**
+     * sm4解密
+     *
+     * @param cipher 秘文
+     * @return 明文
+     * @throws Exception 解密失败抛出的异常
+     */
     public static String decryptEcb(String cipher) throws Exception {
         return decryptEcb(key, cipher);
     }
 
+    /**
+     * 解码带有{@link #SM4_STR_PREFIX}固定前缀的SM4密文
+     * <pre>
+     * 1.null -> null
+     * 2.不带有{@link #SM4_STR_PREFIX}固定前缀 -> 返回原文
+     * 3.带{@link #SM4_STR_PREFIX}固定前缀 -> 去掉{@link #SM4_STR_PREFIX}固定前缀，将剩余部分进行SM4解码
+     * </pre>
+     *
+     * @param ciphertext 密文
+     * @return 明文
+     * @throws Exception 解密失败抛出的异常
+     */
+    public static String decodeIfSM4Prefix(String ciphertext) throws Exception {
+        if (ciphertext == null) {
+            return null;
+        }
+        if (!isSM4PrefixCiphertext(ciphertext)) {
+            return ciphertext;
+        }
+        return decryptEcb(ciphertext.substring(SM4_STR_PREFIX.length()));
+    }
 
-    public static void main(String[] args) {
+    /**
+     * 加密成带有固定前缀{@link #SM4_STR_PREFIX}的密文
+     * @param data 明文
+     * @return 带有固定前缀{@link #SM4_STR_PREFIX}的密文
+     * @throws Exception 解密失败抛出的异常
+     */
+    public static String encryptToSM4PrefixStr(String data) throws Exception {
+        if (data == null) {
+            return null;
+        }
+        String ciphertext = encryptEcb(data);
+        return SM4_STR_PREFIX + ciphertext;
+    }
+
+    public static boolean isSM4PrefixCiphertext(String ciphertext) {
+        return ciphertext != null && ciphertext.startsWith(SM4_STR_PREFIX);
+    }
+
+
+    public static void main(String[] args) throws Exception {
+        test2();
+    }
+
+    private static void test2() throws Exception {
+        String data = "2023-07-12,下午三点";
+        String s = encryptToSM4PrefixStr(data);
+        System.out.println(s);
+
+        String s1 = decodeIfSM4Prefix(s);
+        System.out.println(s1);
+    }
+
+    private static void test1() {
         try {
             String data = "2023-07-12,下午三点";
             //生成key
@@ -183,12 +252,12 @@ public  class SM4Util  {
             System.out.println("key:" + key);
             //加密
             String cipher = SM4Util.encryptEcb(key, data);
-            System.out.println("加密后："+cipher);
+            System.out.println("加密后：" + cipher);
             //判断是否正确
             System.out.println(SM4Util.verifyEcb(key, cipher, data));// true
             //解密
-            String res = SM4Util.decryptEcb(key, cipher);
-            System.out.println("解密后："+res);
+            String res = SM4Util.decryptEcb(key, cipher + 123);
+            System.out.println("解密后：" + res);
         } catch (Exception e) {
             e.printStackTrace();
         }

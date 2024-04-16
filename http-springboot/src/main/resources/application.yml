@@ -12,6 +12,7 @@ lucky:
     print-log-packages:
       - io.github.lucklike.springboothttp.api
     enable-print-annotation-info: true
+    enable-print-args-info: true
     print-log-priority: 10000
     thread-pool-param:
       name-format: http-pool-
@@ -23,6 +24,7 @@ lucky:
     enable-content-compress: true
     spring-el-function-packages:
       - io.github.lucklike.springboothttp.api.spel.function
+
 #    spring-el-functions:
 #      - alias: join
 #        clazz: com.luckyframework.common.StringUtils
