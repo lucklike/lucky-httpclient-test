@@ -41,4 +41,9 @@ public class JavaSerializableController {
         User user = ConversionUtils.conversion(jdkScheme.fromByte(objectBytes), User.class) ;
         return Result.success(user);
     }
+
+    @GetMapping("data")
+    public Integer num(Integer num) {
+        return num;
+    }
 }
