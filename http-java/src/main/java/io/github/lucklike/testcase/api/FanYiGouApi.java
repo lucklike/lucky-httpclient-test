@@ -12,55 +12,58 @@ import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
 import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
-import com.luckyframework.httpclient.proxy.annotations.SpELVar;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
-import com.luckyframework.httpclient.proxy.spel.StaticMethodAlias;
+import com.luckyframework.httpclient.proxy.spel.FunctionAlias;
+import com.luckyframework.httpclient.proxy.spel.SpELVar;
 import com.luckyframework.serializable.SerializationSchemeFactory;
 import io.github.lucklike.util.SM4Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 /**
  * 翻译狗API
  */
-@SpELVar({
-        "appid=#{#SM4('a94edf938ecd3a2a8ca013bd800b52ad')}",
-        "privatekey=#{#SM4('b2482869665723323117ea6d00de9818833788eecce62cbfe88f6baeb23eb08ef59031af1aece287fe54e8b6c383eb3f')}",
-        "nonce_str=#{#NanoIdSize(5)}"
-})
+@SpELVar(fun = {FanYiGouApi.class})
 @DomainName("https://www.fanyigou.com")
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)
 public interface FanYiGouApi {
 
+    static String SM4_PRIVATE_KEY() {
+        return "b2482869665723323117ea6d00de9818833788eecce62cbfe88f6baeb23eb08ef59031af1aece287fe54e8b6c383eb3f";
+    }
+
+    static String SM4_APP_ID() {
+        return "a94edf938ecd3a2a8ca013bd800b52ad";
+    }
 
     /**
      * 生成NanoId随机字符串
      * @return NanoId随机字符串
      */
+    @FunctionAlias("NANOID")
     static String nanoId(){
         return NanoIdUtils.randomNanoId();
     }
 
-    @StaticMethodAlias("NanoIdSize")
+    @FunctionAlias("NanoIdSize")
     static String nanoId(int s){
         return NanoIdUtils.randomNanoId(s);
     }
 
-    static void set(String...s) {
-
-    }
 
     /**
      * SM4解密算法
      * @param s SM4加密后的字符串
      * @return 加密前的明文
      */
+    @FunctionAlias("SM4")
     static String SM4(String s) throws Exception {
         return SM4Util.decryptEcb(s);
     }
@@ -70,7 +73,7 @@ public interface FanYiGouApi {
      * @param jsonStr json字符串
      * @return 转化后的Java对象
      */
-    @StaticMethodAlias("JSON")
+    @FunctionAlias("JSON")
     static Object fromJson(String jsonStr) throws Exception {
         return SerializationSchemeFactory.getJsonScheme().deserialization(jsonStr, Object.class);
     }
@@ -80,11 +83,11 @@ public interface FanYiGouApi {
     class TokenInterceptor implements Interceptor {
         @Override
         public void doBeforeExecute(Request request, InterceptorContext context) {
-            request.addQueryParameter("nonce_str", context.parseExpression("#{nonce_str}"));
-            request.addQueryParameter("appid", context.parseExpression("#{appid}"));
+            request.addQueryParameter("nonce_str", context.runFunction("NANOID"));
+            request.addQueryParameter("appid", context.runFunction("SM4(T(FanYiGouApi).SM4_APP_ID)"));
             Map<String, Object> queryMap = request.getSimpleQueries();
 
-            queryMap.put("privatekey", context.parseExpression("#{privatekey}"));
+            queryMap.put("privatekey", context.runFunction("SM4(T(FanYiGouApi).SM4_PRIVATE_KEY)"));
             String token = getToken(queryMap);
             request.addQueryParameter("token", token);
         }
@@ -113,6 +116,9 @@ public interface FanYiGouApi {
 
         @Override
         public <T> T convert(Response response, ConvertContext context) throws Throwable {
+            if (200 != response.getStatus()) {
+                throw new LuckyRuntimeException("翻译接口调用异常，响应码【{}】", response.getStatus());
+            }
             ConfigurationMap resultMap = response.jsonStrToConfigMap();
             if (resultMap.containsConfigKey("code") && resultMap.getInt("code") == 0) {
                 return ConversionUtils.conversion(resultMap.getProperty("data.transResult"), context.getRealMethodReturnType());

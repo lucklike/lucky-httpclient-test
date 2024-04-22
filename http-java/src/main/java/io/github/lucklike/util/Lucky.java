@@ -40,10 +40,10 @@ public abstract class Lucky {
 //        factory.addInterceptor(CookieManagerInterceptor.class, Scope.SINGLETON, 100);
         factory.addSpringElRootVariable("serverBoot", "http://localhost:8081");
         factory.addSpringElRootVariable("bootHttps", "https://localhost:443");
-        factory.addHeader("Accept-Encoding", "gzip, deflate, br, zstd");
+//        factory.addHeader("Accept-Encoding", "gzip, deflate, br, zstd");
         factory.setHttpExecutor(new OkHttp3Executor());
 
-        factory.addSpringElFunctionClass(FanYiGouApi.class);
+//        factory.addSpringElFunctionClass(FanYiGouApi.class);
 
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //

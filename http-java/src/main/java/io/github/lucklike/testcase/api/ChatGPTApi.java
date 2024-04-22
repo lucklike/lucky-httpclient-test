@@ -4,9 +4,9 @@ import com.luckyframework.httpclient.core.Response;
 import com.luckyframework.httpclient.proxy.annotations.IgnoreVerifySSL;
 import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
-import com.luckyframework.httpclient.proxy.annotations.SpELVar;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.StaticJsonBody;
+import com.luckyframework.httpclient.proxy.spel.SpELVar;
 
 @SpELVar({
         "frefer=",

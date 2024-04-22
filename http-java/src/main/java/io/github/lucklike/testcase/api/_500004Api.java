@@ -3,17 +3,20 @@ package io.github.lucklike.testcase.api;
 import com.luckyframework.httpclient.proxy.annotations.BrowserFeign;
 import com.luckyframework.httpclient.proxy.annotations.ContentCompress;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
+import com.luckyframework.httpclient.proxy.annotations.HttpExec;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.StaticXmlBody;
+import com.luckyframework.httpclient.proxy.annotations.Timeout;
 
-@BrowserFeign(userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool")
-@ContentCompress
-@DomainName("http://esb17.httest.cairenhui.com:9092/")
+import static com.luckyframework.httpclient.proxy.annotations.BrowserFeign.BOT;
+
+@HttpExec.okhttp3
+@BrowserFeign(userAgent = BOT)
+@DomainName("http://esb17.httest.cairenhui.com:9092")
 public interface _500004Api {
 
-    @StaticHeader({"Accept-Language=zh-CN,zh;q=0.8", "Accept=text/html,application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"})
-//    @Timeout(connectionTimeout =  60 * 1000, readTimeout = 100 * 60 * 1000, writeTimeout = 10 * 60 * 1000)
+//    @Timeout(connectionTimeout =  5000, readTimeout = 100, writeTimeout =100)
     @StaticXmlBody("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:hts=\"http://www.htsec.com/\">\n" +
             "    <soapenv:Header/>\n" +
             "    <soapenv:Body>\n" +

@@ -29,7 +29,12 @@ import java.util.Map;
  */
 @DomainName("https://www.fanyigou.com")
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
-@InterceptorRegister(intercept = @ObjectGenerate(clazz = FanYiGouApi.TokenInterceptor.class, msg = "tokenInterceptor"), priority = 99)
+@InterceptorRegister(
+        intercept = @ObjectGenerate(
+                clazz = FanYiGouApi.TokenInterceptor.class,
+                msg = "tokenInterceptor"),
+        priority = 99
+)
 public interface FanYiGouApi {
 
     /**
@@ -103,6 +108,9 @@ public interface FanYiGouApi {
 
         @Override
         public <T> T convert(Response response, ConvertContext context) throws Throwable {
+            if (200 != response.getStatus()) {
+                throw new LuckyRuntimeException("翻译接口调用异常，响应码【{}】", response.getStatus());
+            }
             ConfigurationMap resultMap = response.jsonStrToConfigMap();
             if (resultMap.containsConfigKey("code") && resultMap.getInt("code") == 0) {
                 return ConversionUtils.conversion(resultMap.getProperty("data.transResult"), context.getRealMethodReturnType());

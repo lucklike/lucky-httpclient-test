@@ -2,6 +2,7 @@ package io.github.lucklike.doccase;
 
 import com.luckyframework.common.ConfigurationMap;
 import com.luckyframework.httpclient.core.executor.HttpClientExecutor;
+import com.luckyframework.httpclient.core.executor.JdkHttpExecutor;
 import com.luckyframework.httpclient.core.executor.OkHttp3Executor;
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
 import com.luckyframework.httpclient.proxy.creator.Scope;
@@ -19,7 +20,7 @@ public class Lucky {
     private static final HttpClientProxyObjectFactory factory;
 
     static {
-        factory = new HttpClientProxyObjectFactory();
+        factory = new HttpClientProxyObjectFactory(new HttpClientExecutor());
         factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
             log.setAllowPrintLogBodyMaxLength(1000);
 //            log.setReqCondition("false");
