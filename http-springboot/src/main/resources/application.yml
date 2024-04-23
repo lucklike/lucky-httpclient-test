@@ -26,6 +26,8 @@ lucky:
       - io.github.lucklike.springboothttp.api.spel.function
     spring-el-package-imports:
       - java.util
+    response-auto-converts:
+      - type: com.luckyframework.httpclient.core.ProtobufAutoConvert
 
 #    spring-el-functions:
 #      - alias: join
