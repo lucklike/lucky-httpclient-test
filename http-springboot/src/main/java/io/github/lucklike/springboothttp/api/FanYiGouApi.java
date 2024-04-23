@@ -7,20 +7,21 @@ import com.luckyframework.conversion.ConversionUtils;
 import com.luckyframework.exception.LuckyRuntimeException;
 import com.luckyframework.httpclient.core.Request;
 import com.luckyframework.httpclient.core.Response;
+import com.luckyframework.httpclient.proxy.annotations.Branch;
+import com.luckyframework.httpclient.proxy.annotations.ConditionalSelection;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
-import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
-import com.luckyframework.spel.SpELImport;
 import io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,12 @@ import java.util.Map;
 /**
  * 翻译狗API
  */
+@ConditionalSelection({
+        @Branch(assertion = "#{$body$.code != 0}", exception = "翻译失败！【(#{$body$.code}) #{$body$.msg}】"),
+        @Branch(assertion = "#{$body$.code == 0}", result = "#{$body$.data.transResult}")
+})
 @DomainName("https://www.fanyigou.com")
-@ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
+//@ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(
         intercept = @ObjectGenerate(
                 clazz = FanYiGouApi.TokenInterceptor.class,
@@ -117,6 +122,23 @@ public interface FanYiGouApi {
                 return ConversionUtils.conversion(resultMap.getProperty("data.transResult"), context.getRealMethodReturnType());
             }
             throw new LuckyRuntimeException("翻译失败！【({}) {}】", resultMap.getInt("code"), resultMap.getString("msg"));
+        }
+    }
+
+    class FYGAutoConvert implements Response.AutoConvert {
+
+
+        @Override
+        public boolean can(Response resp) {
+            return "www.fanyigou.com".equals(resp.getRequest().getURI().getHost());
+        }
+
+        @Override
+        public <T> T convert(Response resp, Type type) {
+            if (200 != resp.getStatus()) {
+                throw new LuckyRuntimeException("翻译接口调用异常，响应码【{}】", resp.getStatus());
+            }
+            return resp.jsonStrToEntity(type);
         }
     }
 }

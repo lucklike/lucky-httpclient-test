@@ -28,7 +28,7 @@ lucky:
       - java.util
     response-auto-converts:
       - type: com.luckyframework.httpclient.core.ProtobufAutoConvert
-
+      - type: io.github.lucklike.springboothttp.api.FanYiGouApi$FYGAutoConvert
 #    spring-el-functions:
 #      - alias: join
 #        clazz: com.luckyframework.common.StringUtils
