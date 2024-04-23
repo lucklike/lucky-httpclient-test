@@ -3,6 +3,7 @@ package io.github.lucklike.springboothttp.api;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
+import com.luckyframework.spel.SpELImport;
 import io.github.lucklike.httpclient.annotation.HttpClientComponent;
 import io.github.lucklike.springboothttp.api.spel.function.SM4;
 

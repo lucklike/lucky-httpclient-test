@@ -24,6 +24,8 @@ lucky:
     enable-content-compress: true
     spring-el-function-packages:
       - io.github.lucklike.springboothttp.api.spel.function
+    spring-el-package-imports:
+      - java.util
 
 #    spring-el-functions:
 #      - alias: join

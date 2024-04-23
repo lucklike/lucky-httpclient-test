@@ -232,7 +232,6 @@ public class SM4Util {
 
 
     public static void main(String[] args) throws Exception {
-        test2();
     }
 
     private static void test2() throws Exception {

@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class AddApiTest {
@@ -19,7 +18,7 @@ class AddApiTest {
     @Test
     void getData() {
         for (int i = 0; i < 3; i++) {
-            System.out.println(api.getData());
+            System.out.println(api.getData(Arrays.asList("hello", "world")));
         }
     }
 

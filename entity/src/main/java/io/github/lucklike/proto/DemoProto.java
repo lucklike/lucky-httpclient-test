@@ -2,7 +2,7 @@
 // source: demo.proto
 
 // Protobuf Java Version: 3.25.3
-package io.github.lucklike.serverboot.proto;
+package io.github.lucklike.proto;
 
 public final class DemoProto {
   private DemoProto() {}
@@ -16,7 +16,7 @@ public final class DemoProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface DemoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.wxw.notes.protobuf.proto.Demo)
+      // @@protoc_insertion_point(interface_extends:io.github.lucklike.proto.Demo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -33,7 +33,7 @@ public final class DemoProto {
      * <code>string code = 2;</code>
      * @return The code.
      */
-    java.lang.String getCode();
+    String getCode();
     /**
      * <code>string code = 2;</code>
      * @return The bytes for code.
@@ -45,7 +45,7 @@ public final class DemoProto {
      * <code>string name = 3;</code>
      * @return The name.
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>string name = 3;</code>
      * @return The bytes for name.
@@ -54,11 +54,11 @@ public final class DemoProto {
         getNameBytes();
   }
   /**
-   * Protobuf type {@code com.wxw.notes.protobuf.proto.Demo}
+   * Protobuf type {@code io.github.lucklike.proto.Demo}
    */
   public static final class Demo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.wxw.notes.protobuf.proto.Demo)
+      // @@protoc_insertion_point(message_implements:io.github.lucklike.proto.Demo)
       DemoOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use Demo.newBuilder() to construct.
@@ -70,24 +70,24 @@ public final class DemoProto {
       name_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new Demo();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.lucklike.serverboot.proto.DemoProto.internal_static_com_wxw_notes_protobuf_proto_Demo_descriptor;
+      return DemoProto.internal_static_io_github_lucklike_proto_Demo_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.lucklike.serverboot.proto.DemoProto.internal_static_com_wxw_notes_protobuf_proto_Demo_fieldAccessorTable
+      return DemoProto.internal_static_io_github_lucklike_proto_Demo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.github.lucklike.serverboot.proto.DemoProto.Demo.class, io.github.lucklike.serverboot.proto.DemoProto.Demo.Builder.class);
+              Demo.class, Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -100,27 +100,27 @@ public final class DemoProto {
      * <code>int32 id = 1;</code>
      * @return The id.
      */
-    @java.lang.Override
+    @Override
     public int getId() {
       return id_;
     }
 
     public static final int CODE_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object code_ = "";
+    private volatile Object code_ = "";
     /**
      * <code>string code = 2;</code>
      * @return The code.
      */
-    @java.lang.Override
-    public java.lang.String getCode() {
-      java.lang.Object ref = code_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    @Override
+    public String getCode() {
+      Object ref = code_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         code_ = s;
         return s;
       }
@@ -129,14 +129,14 @@ public final class DemoProto {
      * <code>string code = 2;</code>
      * @return The bytes for code.
      */
-    @java.lang.Override
+    @Override
     public com.google.protobuf.ByteString
         getCodeBytes() {
-      java.lang.Object ref = code_;
-      if (ref instanceof java.lang.String) {
+      Object ref = code_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         code_ = b;
         return b;
       } else {
@@ -146,20 +146,20 @@ public final class DemoProto {
 
     public static final int NAME_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object name_ = "";
+    private volatile Object name_ = "";
     /**
      * <code>string name = 3;</code>
      * @return The name.
      */
-    @java.lang.Override
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    @Override
+    public String getName() {
+      Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         name_ = s;
         return s;
       }
@@ -168,14 +168,14 @@ public final class DemoProto {
      * <code>string name = 3;</code>
      * @return The bytes for name.
      */
-    @java.lang.Override
+    @Override
     public com.google.protobuf.ByteString
         getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
+      Object ref = name_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         name_ = b;
         return b;
       } else {
@@ -184,7 +184,7 @@ public final class DemoProto {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -194,7 +194,7 @@ public final class DemoProto {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
@@ -209,7 +209,7 @@ public final class DemoProto {
       getUnknownFields().writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -230,15 +230,15 @@ public final class DemoProto {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof io.github.lucklike.serverboot.proto.DemoProto.Demo)) {
+      if (!(obj instanceof Demo)) {
         return super.equals(obj);
       }
-      io.github.lucklike.serverboot.proto.DemoProto.Demo other = (io.github.lucklike.serverboot.proto.DemoProto.Demo) obj;
+      Demo other = (Demo) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -250,7 +250,7 @@ public final class DemoProto {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -268,44 +268,44 @@ public final class DemoProto {
       return hash;
     }
 
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(byte[] data)
+    public static Demo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(java.io.InputStream input)
+    public static Demo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -313,26 +313,26 @@ public final class DemoProto {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseDelimitedFrom(java.io.InputStream input)
+    public static Demo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseDelimitedFrom(
+    public static Demo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo parseFrom(
+    public static Demo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -340,57 +340,57 @@ public final class DemoProto {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(io.github.lucklike.serverboot.proto.DemoProto.Demo prototype) {
+    public static Builder newBuilder(Demo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
-     * Protobuf type {@code com.wxw.notes.protobuf.proto.Demo}
+     * Protobuf type {@code io.github.lucklike.proto.Demo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.wxw.notes.protobuf.proto.Demo)
-        io.github.lucklike.serverboot.proto.DemoProto.DemoOrBuilder {
+        // @@protoc_insertion_point(builder_implements:io.github.lucklike.proto.Demo)
+        DemoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return io.github.lucklike.serverboot.proto.DemoProto.internal_static_com_wxw_notes_protobuf_proto_Demo_descriptor;
+        return DemoProto.internal_static_io_github_lucklike_proto_Demo_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return io.github.lucklike.serverboot.proto.DemoProto.internal_static_com_wxw_notes_protobuf_proto_Demo_fieldAccessorTable
+        return DemoProto.internal_static_io_github_lucklike_proto_Demo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                io.github.lucklike.serverboot.proto.DemoProto.Demo.class, io.github.lucklike.serverboot.proto.DemoProto.Demo.Builder.class);
+                Demo.class, Builder.class);
       }
 
-      // Construct using io.github.lucklike.serverboot.proto.DemoProto.Demo.newBuilder()
+      // Construct using io.github.lucklike.proto.DemoProto.Demo.newBuilder()
       private Builder() {
 
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
 
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
@@ -400,35 +400,35 @@ public final class DemoProto {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return io.github.lucklike.serverboot.proto.DemoProto.internal_static_com_wxw_notes_protobuf_proto_Demo_descriptor;
+        return DemoProto.internal_static_io_github_lucklike_proto_Demo_descriptor;
       }
 
-      @java.lang.Override
-      public io.github.lucklike.serverboot.proto.DemoProto.Demo getDefaultInstanceForType() {
-        return io.github.lucklike.serverboot.proto.DemoProto.Demo.getDefaultInstance();
+      @Override
+      public Demo getDefaultInstanceForType() {
+        return Demo.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public io.github.lucklike.serverboot.proto.DemoProto.Demo build() {
-        io.github.lucklike.serverboot.proto.DemoProto.Demo result = buildPartial();
+      @Override
+      public Demo build() {
+        Demo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public io.github.lucklike.serverboot.proto.DemoProto.Demo buildPartial() {
-        io.github.lucklike.serverboot.proto.DemoProto.Demo result = new io.github.lucklike.serverboot.proto.DemoProto.Demo(this);
+      @Override
+      public Demo buildPartial() {
+        Demo result = new Demo(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(io.github.lucklike.serverboot.proto.DemoProto.Demo result) {
+      private void buildPartial0(Demo result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.id_ = id_;
@@ -441,50 +441,50 @@ public final class DemoProto {
         }
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.github.lucklike.serverboot.proto.DemoProto.Demo) {
-          return mergeFrom((io.github.lucklike.serverboot.proto.DemoProto.Demo)other);
+        if (other instanceof Demo) {
+          return mergeFrom((Demo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(io.github.lucklike.serverboot.proto.DemoProto.Demo other) {
-        if (other == io.github.lucklike.serverboot.proto.DemoProto.Demo.getDefaultInstance()) return this;
+      public Builder mergeFrom(Demo other) {
+        if (other == Demo.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -503,18 +503,18 @@ public final class DemoProto {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
+          throw new NullPointerException();
         }
         try {
           boolean done = false;
@@ -565,7 +565,7 @@ public final class DemoProto {
        * <code>int32 id = 1;</code>
        * @return The id.
        */
-      @java.lang.Override
+      @Override
       public int getId() {
         return id_;
       }
@@ -600,21 +600,21 @@ public final class DemoProto {
         return this;
       }
 
-      private java.lang.Object code_ = "";
+      private Object code_ = "";
       /**
        * <code>string code = 2;</code>
        * @return The code.
        */
-      public java.lang.String getCode() {
-        java.lang.Object ref = code_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getCode() {
+        Object ref = code_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           code_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -623,11 +623,11 @@ public final class DemoProto {
        */
       public com.google.protobuf.ByteString
           getCodeBytes() {
-        java.lang.Object ref = code_;
+        Object ref = code_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           code_ = b;
           return b;
         } else {
@@ -640,7 +640,7 @@ public final class DemoProto {
        * @return This builder for chaining.
        */
       public Builder setCode(
-          java.lang.String value) {
+          String value) {
         if (value == null) { throw new NullPointerException(); }
         code_ = value;
         bitField0_ |= 0x00000002;
@@ -672,21 +672,21 @@ public final class DemoProto {
         return this;
       }
 
-      private java.lang.Object name_ = "";
+      private Object name_ = "";
       /**
        * <code>string name = 3;</code>
        * @return The name.
        */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getName() {
+        Object ref = name_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -695,11 +695,11 @@ public final class DemoProto {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        java.lang.Object ref = name_;
+        Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           name_ = b;
           return b;
         } else {
@@ -712,7 +712,7 @@ public final class DemoProto {
        * @return This builder for chaining.
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         if (value == null) { throw new NullPointerException(); }
         name_ = value;
         bitField0_ |= 0x00000004;
@@ -743,35 +743,35 @@ public final class DemoProto {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.wxw.notes.protobuf.proto.Demo)
+      // @@protoc_insertion_point(builder_scope:io.github.lucklike.proto.Demo)
     }
 
-    // @@protoc_insertion_point(class_scope:com.wxw.notes.protobuf.proto.Demo)
-    private static final io.github.lucklike.serverboot.proto.DemoProto.Demo DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:io.github.lucklike.proto.Demo)
+    private static final Demo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new io.github.lucklike.serverboot.proto.DemoProto.Demo();
+      DEFAULT_INSTANCE = new Demo();
     }
 
-    public static io.github.lucklike.serverboot.proto.DemoProto.Demo getDefaultInstance() {
+    public static Demo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<Demo>
         PARSER = new com.google.protobuf.AbstractParser<Demo>() {
-      @java.lang.Override
+      @Override
       public Demo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -795,23 +795,23 @@ public final class DemoProto {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<Demo> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public io.github.lucklike.serverboot.proto.DemoProto.Demo getDefaultInstanceForType() {
+    @Override
+    public Demo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_wxw_notes_protobuf_proto_Demo_descriptor;
+    internal_static_io_github_lucklike_proto_Demo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_wxw_notes_protobuf_proto_Demo_fieldAccessorTable;
+      internal_static_io_github_lucklike_proto_Demo_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -820,22 +820,22 @@ public final class DemoProto {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
-      "\n\ndemo.proto\022\034com.wxw.notes.protobuf.pro" +
-      "to\".\n\004Demo\022\n\n\002id\030\001 \001(\005\022\014\n\004code\030\002 \001(\t\022\014\n\004" +
-      "name\030\003 \001(\tB0\n#io.github.lucklike.serverb" +
-      "oot.protoB\tDemoProtob\006proto3"
+    String[] descriptorData = {
+      "\n\ndemo.proto\022\030io.github.lucklike.proto\"." +
+      "\n\004Demo\022\n\n\002id\030\001 \001(\005\022\014\n\004code\030\002 \001(\t\022\014\n\004name" +
+      "\030\003 \001(\tB%\n\030io.github.lucklike.protoB\tDemo" +
+      "Protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_com_wxw_notes_protobuf_proto_Demo_descriptor =
+    internal_static_io_github_lucklike_proto_Demo_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_com_wxw_notes_protobuf_proto_Demo_fieldAccessorTable = new
+    internal_static_io_github_lucklike_proto_Demo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_wxw_notes_protobuf_proto_Demo_descriptor,
-        new java.lang.String[] { "Id", "Code", "Name", });
+        internal_static_io_github_lucklike_proto_Demo_descriptor,
+        new String[] { "Id", "Code", "Name", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

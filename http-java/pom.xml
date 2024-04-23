@@ -13,6 +13,20 @@
             <groupId>io.github.lucklike</groupId>
             <artifactId>entity</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.googlecode.protobuf-java-format</groupId>
+                    <artifactId>protobuf-java-format</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

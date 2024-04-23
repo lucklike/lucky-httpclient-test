@@ -18,4 +18,9 @@ public class TranslationApiTest {
         System.out.println(api.trans("不要生气，保持冷静！"));
     }
 
+    @Test
+    public void test1() {
+        System.out.println(api.getName());
+    }
+
 }

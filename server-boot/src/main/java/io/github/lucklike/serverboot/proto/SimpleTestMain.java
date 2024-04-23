@@ -2,6 +2,7 @@ package io.github.lucklike.serverboot.proto;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
+import io.github.lucklike.proto.DemoProto;
 
 import java.util.Arrays;
 

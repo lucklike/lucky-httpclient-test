@@ -53,6 +53,24 @@
       <version>1.4.20</version>
     </dependency>
 
+    <!-- Protobuf 依赖 -->
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>3.25.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java-util</artifactId>
+      <version>3.25.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.protobuf-java-format</groupId>
+      <artifactId>protobuf-java-format</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+
     <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
