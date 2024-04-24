@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("fileTest")
@@ -22,7 +23,7 @@ public class FileTestController {
     private FileAPI api;
 
     @GetMapping("upload")
-    public Result<List<String>> upload(String[] paths)  {
+    public Result<Map<String, Object>> upload(String[] paths)  {
         return api.upload(paths);
     }
 

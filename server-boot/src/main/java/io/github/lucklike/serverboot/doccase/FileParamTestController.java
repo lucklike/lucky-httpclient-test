@@ -79,6 +79,6 @@ public class FileParamTestController implements ResourceLoaderAware {
 
 
     private File getLocalFile(String fileName) {
-       return new File("/Users/fukang/Lucky/lucky-httpclient-test/server-boot/src/main/resources/upload/" + fileName);
+       return new File("D:\\Lucky\\lucky-httpclient-test\\server-boot\\src\\main\\resources\\upload\\" + fileName);
     }
 }

@@ -17,8 +17,7 @@ public class FileAPITest {
     void uploadTest() {
         String[] files ={
             "https://tse2-mm.cn.bing.net/th/id/OIP-C.2zd6VjunSEhgIOVfmMFXZAHaNK?rs=1&pid=ImgDetMain",
-                "file:/Users/fukang/Downloads/*.jpg",
-                "file:/Users/fukang/Downloads/*.doc"
+                "file:D:/*.pdf"
         };
         System.out.println(fileAPI.upload(files));
     }
