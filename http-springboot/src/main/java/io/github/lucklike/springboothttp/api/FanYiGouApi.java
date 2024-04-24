@@ -35,12 +35,7 @@ import java.util.Map;
 })
 @DomainName("https://www.fanyigou.com")
 //@ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
-@InterceptorRegister(
-        intercept = @ObjectGenerate(
-                clazz = FanYiGouApi.TokenInterceptor.class,
-                msg = "tokenInterceptor"),
-        priority = 99
-)
+@InterceptorRegister(intercept = @ObjectGenerate(msg = "tokenInterceptor"), priority = 99)
 public interface FanYiGouApi {
 
     /**
