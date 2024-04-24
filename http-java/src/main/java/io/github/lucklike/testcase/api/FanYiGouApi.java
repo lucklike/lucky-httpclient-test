@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * 翻译狗API
  */
-@SpELVar(fun = {FanYiGouApi.class})
+@SpELVar(fun = {FanYiGouApi.class}, root = {"nanoid=#{#NANOID() + $class$.getName()}"})
 @DomainName("https://www.fanyigou.com")
 @ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(FanYiGouApi.TokenInterceptor.class), priority = 99)

@@ -10,10 +10,10 @@ import io.github.lucklike.proto.DemoProto;
 @HttpClientComponent
 public interface ProtobufApi extends ServerBootApi {
 
-    @Put("/protobuf/put")
+    @Put("/protobuf/put1")
     void put(@ProtobufBody DemoProto.Demo demo);
 
     @ResponseSelect(expression = "#{$body$.id + '-' + $body$.code + '-' + $body$.name}", metaType = DemoProto.Demo.class)
-    @Get("/protobuf/get")
+    @Get("/protobuf/get2")
     String get(String name);
 }

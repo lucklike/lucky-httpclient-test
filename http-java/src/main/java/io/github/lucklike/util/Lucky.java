@@ -43,7 +43,7 @@ public abstract class Lucky {
 //        factory.addHeader("Accept-Encoding", "gzip, deflate, br, zstd");
         factory.setHttpExecutor(new OkHttp3Executor());
 
-        factory.addSpringElFunctionClass(FanYiGouApi.class);
+//        factory.addSpringElFunctionClass(FanYiGouApi.class);
 
 //        factory.setHostnameVerifier(TrustAllHostnameVerifier.DEFAULT_INSTANCE);
 //
