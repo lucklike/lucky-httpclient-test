@@ -34,7 +34,6 @@ import java.util.Map;
         @Branch(assertion = "#{$body$.code == 0}", result = "#{$body$.data.transResult}")
 })
 @DomainName("https://www.fanyigou.com")
-//@ResultConvert(convert = @ObjectGenerate(FanYiGouApi.Convert.class))
 @InterceptorRegister(intercept = @ObjectGenerate(msg = "tokenInterceptor"), priority = 99)
 public interface FanYiGouApi {
 

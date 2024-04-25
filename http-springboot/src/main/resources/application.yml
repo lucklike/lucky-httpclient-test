@@ -29,6 +29,7 @@ lucky:
     response-auto-converts:
       - type: com.luckyframework.httpclient.core.ProtobufAutoConvert
       - type: io.github.lucklike.springboothttp.api.FanYiGouApi$FYGAutoConvert
+    allow-print-log-body-mime-types: '*/*'
 #    spring-el-functions:
 #      - alias: join
 #        clazz: com.luckyframework.common.StringUtils

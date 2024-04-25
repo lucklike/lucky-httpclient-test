@@ -3,8 +3,10 @@ package io.github.lucklike.testcase.api;
 import com.luckyframework.httpclient.proxy.annotations.ConvertProhibition;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.Post;
+import com.luckyframework.httpclient.proxy.annotations.ResponseSelect;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.spel.SpELVar;
+import io.github.lucklike.proto.DemoProto;
 
 /**
  *
@@ -19,7 +21,8 @@ public interface TranslationApi extends FanYiGouApi {
     @Post("/TranslateApi/api/trans?from=zh&to=en")
     String trans(String text);
 
-    @ConvertProhibition
+
     @Get("http://localhost:8081/protobuf/get?name=Jack")
-    String getName();
+    @ResponseSelect(expression = "#{$body$.name}", metaType = DemoProto.Demo.class)
+    String getName21();
 }

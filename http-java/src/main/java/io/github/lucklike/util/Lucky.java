@@ -1,6 +1,8 @@
 package io.github.lucklike.util;
 
 import com.luckyframework.common.ConfigurationMap;
+import com.luckyframework.httpclient.core.ProtobufAutoConvert;
+import com.luckyframework.httpclient.core.Response;
 import com.luckyframework.httpclient.core.executor.HttpClientExecutor;
 import com.luckyframework.httpclient.core.executor.JdkHttpExecutor;
 import com.luckyframework.httpclient.core.executor.OkHttp3Executor;
@@ -42,6 +44,7 @@ public abstract class Lucky {
         factory.addSpringElRootVariable("bootHttps", "https://localhost:443");
 //        factory.addHeader("Accept-Encoding", "gzip, deflate, br, zstd");
         factory.setHttpExecutor(new OkHttp3Executor());
+        Response.addAutoConvert(new ProtobufAutoConvert());
 
 //        factory.addSpringElFunctionClass(FanYiGouApi.class);
 
