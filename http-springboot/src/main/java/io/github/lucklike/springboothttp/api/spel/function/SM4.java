@@ -1,6 +1,7 @@
 package io.github.lucklike.springboothttp.api.spel.function;
 
 import com.luckyframework.httpclient.proxy.annotations.ArgHandle;
+import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -13,6 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
+@NotHttpParam
 @ArgHandle("#{#SM4(_value_)}")
 public @interface SM4 {
 }

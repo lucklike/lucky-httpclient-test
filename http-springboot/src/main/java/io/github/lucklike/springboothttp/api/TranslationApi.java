@@ -26,6 +26,5 @@ public interface TranslationApi extends FanYiGouApi {
 
     @SM4
     @Get("/Test/v1/")
-    @NotHttpParam
     String ttt(String sm4AppKey, String sm4PrivateKey);
 }
