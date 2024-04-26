@@ -5,10 +5,10 @@ lucky:
   http-client:
     http-executor: jdk
     ignore-ssl-verify: true
-    enable-cookie-manage: true
+#    enable-cookie-manage: true
     cookie-manage-priority: 1001
-    cookie-store-generate:
-      bean-name: cookieStore
+#    cookie-store-generate:
+#      bean-name: cookieStore
     print-log-packages:
       - io.github.lucklike.springboothttp.api
     enable-print-annotation-info: true
@@ -29,7 +29,7 @@ lucky:
     response-auto-converts:
       - type: com.luckyframework.httpclient.core.ProtobufAutoConvert
       - type: io.github.lucklike.springboothttp.api.FanYiGouApi$FYGAutoConvert
-    allow-print-log-body-mime-types: '*/*'
+#    allow-print-log-body-mime-types: '*/*'
 #    spring-el-functions:
 #      - alias: join
 #        clazz: com.luckyframework.common.StringUtils

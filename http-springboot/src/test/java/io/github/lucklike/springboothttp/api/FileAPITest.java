@@ -1,5 +1,6 @@
 package io.github.lucklike.springboothttp.api;
 
+import com.luckyframework.io.MultipartFile;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -37,5 +38,12 @@ public class FileAPITest {
         for (InputStream in : inArr) {
             in.close();
         }
+    }
+
+    @Test
+    void jarDownloadTest() throws IOException {
+        MultipartFile mf = fileAPI.jarDownload();
+//        mf.setFileName("com-back");
+        mf.copyToFolder("D:/test");
     }
 }
