@@ -5,14 +5,14 @@ lucky:
   http-client:
     http-executor: jdk
     ignore-ssl-verify: true
-#    enable-cookie-manage: true
+    enable-cookie-manage: true
     cookie-manage-priority: 1001
-#    cookie-store-generate:
-#      bean-name: cookieStore
+    cookie-store-generate:
+      bean-name: cookieStore
     print-log-packages:
       - io.github.lucklike.springboothttp.api
-    enable-print-annotation-info: true
-    enable-print-args-info: true
+#    enable-print-annotation-info: true
+#    enable-print-args-info: true
     print-log-priority: 10000
     thread-pool-param:
       name-format: http-pool-
@@ -62,4 +62,7 @@ fanYiGou:
   sm4:
     appId: a94edf938ecd3a2a8ca013bd800b52ad
     privateKey: b2482869665723323117ea6d00de9818833788eecce62cbfe88f6baeb23eb08ef59031af1aece287fe54e8b6c383eb3f
+
+
+en: 中文测试-Test
 

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@SpELVar(root= "test=#{$this$.test()}", fun = AddApi.class)
+@SpELVar(fun = AddApi.class)
 @HttpClient("http://#{$this$.getIp($method$)}")
 public interface AddApi {
 
@@ -37,11 +37,6 @@ public interface AddApi {
     default String getIp(Method method) {
         System.out.println(method.toGenericString());
         return "getData1".equals(method.getName()) ? "192.168.0.2" : "192.168.0.1";
-    }
-
-    default String test() {
-        System.out.println("------------test--------------------");
-        return "test";
     }
 
     @FunctionAlias("LIST_TO_STRING")

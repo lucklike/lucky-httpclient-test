@@ -12,10 +12,12 @@ import com.luckyframework.httpclient.proxy.annotations.ConditionalSelection;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
+import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
+import com.luckyframework.httpclient.proxy.spel.SpELVar;
 import io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,10 +31,14 @@ import java.util.Map;
 /**
  * 翻译狗API
  */
+@SpELVar({
+        "appId=#{#SM4('${fanYiGou.sm4.appId}')}",
+        "privateKey=#{#SM4('${fanYiGou.sm4.privateKey}')}"})
 @ConditionalSelection({
         @Branch(assertion = "#{$body$.code != 0}", exception = "翻译失败！【(#{$body$.code}) #{$body$.msg}】"),
         @Branch(assertion = "#{$body$.code == 0}", result = "#{$body$.data.transResult}")
 })
+@StaticQuery("appid=#{appId}")
 @DomainName("https://www.fanyigou.com")
 @InterceptorRegister(intercept = @ObjectGenerate(msg = "tokenInterceptor"), priority = 99)
 public interface FanYiGouApi {
@@ -43,24 +49,15 @@ public interface FanYiGouApi {
     @Component("tokenInterceptor")
     class TokenInterceptor implements Interceptor {
 
-        @Value("${fanYiGou.sm4.appId}")
-        private String sm4_appId;
-        @Value("${fanYiGou.sm4.privateKey}")
-        private String sm4_private_key;
-
-        private String privateKey;
-        private String appId;
-
         @Override
         public void doBeforeExecute(Request request, InterceptorContext context) {
 
             // 补充参数appid、nonce_str
-            request.addQueryParameter("appid", getAppId());
             request.addQueryParameter("nonce_str", SpELFunctionUtils.nanoId());
 
             // 获取当前请求的Query参数Map，并加入privateKey，用于生成Token
             Map<String, Object> queryMap = request.getSimpleQueries();
-            queryMap.put("privatekey", getPrivateKey());
+            queryMap.put("privatekey", context.getNestRootVar("privateKey"));
             String token = getToken(queryMap);
 
             //  补充参数token
@@ -86,41 +83,9 @@ public interface FanYiGouApi {
             String stringA = StringUtils.join(elementList, "&");
             return DigestUtil.md5Hex(stringA).toUpperCase();
         }
-
-        @SneakyThrows
-        public String getPrivateKey() {
-            if (privateKey == null) {
-                privateKey = SpELFunctionUtils.SM4(sm4_private_key);
-            }
-            return privateKey;
-        }
-
-        @SneakyThrows
-        public String getAppId() {
-            if (appId == null) {
-                appId = SpELFunctionUtils.SM4(sm4_appId);
-            }
-            return appId;
-        }
-    }
-
-    class Convert implements ResponseConvert {
-
-        @Override
-        public <T> T convert(Response response, ConvertContext context) throws Throwable {
-            if (200 != response.getStatus()) {
-                throw new LuckyRuntimeException("翻译接口调用异常，响应码【{}】", response.getStatus());
-            }
-            ConfigurationMap resultMap = response.jsonStrToConfigMap();
-            if (resultMap.containsConfigKey("code") && resultMap.getInt("code") == 0) {
-                return ConversionUtils.conversion(resultMap.getProperty("data.transResult"), context.getRealMethodReturnType());
-            }
-            throw new LuckyRuntimeException("翻译失败！【({}) {}】", resultMap.getInt("code"), resultMap.getString("msg"));
-        }
     }
 
     class FYGAutoConvert implements Response.AutoConvert {
-
 
         @Override
         public boolean can(Response resp) {
