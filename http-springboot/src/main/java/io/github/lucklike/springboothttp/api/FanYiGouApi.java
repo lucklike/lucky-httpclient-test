@@ -5,6 +5,7 @@ import com.luckyframework.common.ConfigurationMap;
 import com.luckyframework.common.StringUtils;
 import com.luckyframework.conversion.ConversionUtils;
 import com.luckyframework.exception.LuckyRuntimeException;
+import com.luckyframework.httpclient.core.Header;
 import com.luckyframework.httpclient.core.Request;
 import com.luckyframework.httpclient.core.Response;
 import com.luckyframework.httpclient.proxy.annotations.Branch;
@@ -14,6 +15,7 @@ import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
 import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
+import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
@@ -40,10 +42,10 @@ import java.util.Map;
         @Branch(assertion = "#{$body$.code != 0}", exception = "翻译失败！【(#{$body$.code}) #{$body$.msg}】"),
         @Branch(assertion = "#{$body$.code == 0}", result = "#{$body$.data.transResult}")
 })
+@StaticHeader("X-Auto-Convert=FYGAutoConvert")
 @StaticQuery("appid=#{appId}")
 @DomainName("https://www.fanyigou.com")
 @InterceptorRegister(intercept = @ObjectGenerate(msg = "tokenInterceptor"), priority = 99)
-//@ResultConvert(convert = @ObjectGenerate(msg = "FYGResultConvert"))
 @ContentCompressProhibition
 public interface FanYiGouApi {
 
@@ -114,7 +116,9 @@ public interface FanYiGouApi {
 
         @Override
         public boolean can(Response resp) {
-            return "www.fanyigou.com".equals(resp.getRequest().getURI().getHost());
+            Request request = resp.getRequest();
+            Header header = request.getFirstHeader("X-Auto-Convert");
+            return header != null && header.containsValue("FYGAutoConvert");
         }
 
         @Override

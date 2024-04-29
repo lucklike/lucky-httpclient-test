@@ -1,7 +1,10 @@
 package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.httpclient.proxy.annotations.Get;
+import com.luckyframework.httpclient.proxy.annotations.HttpExec;
+import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
+import com.luckyframework.httpclient.proxy.annotations.URLEncoder;
 import io.github.lucklike.httpclient.annotation.HttpClientComponent;
 import io.github.lucklike.springboothttp.api.spel.function.SM4;
 
@@ -20,8 +23,8 @@ public interface TranslationApi extends FanYiGouApi {
     @Post("/TranslateApi/api/trans?from=zh&to=en")
     String trans(String text);
 
-    @Post("/TranslateApi/api/trans?from=zh&to=en")
-    Future<String> syncTrans(String text);
+    @Post("/TranslateApi/api/trans?#{en ? 'from=zh&to=en' : 'from=en&to=zh'}")
+    String trans2(String text, @NotHttpParam boolean en);
 
     @SM4
     @Get("/Test/v1/")
