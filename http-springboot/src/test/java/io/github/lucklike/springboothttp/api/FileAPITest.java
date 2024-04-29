@@ -1,6 +1,7 @@
 package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.io.MultipartFile;
+import io.github.lucklike.entity.JarInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -45,5 +46,11 @@ public class FileAPITest {
         MultipartFile mf = fileAPI.jarDownload();
 //        mf.setFileName("com-back");
         mf.copyToFolder("D:/test");
+    }
+
+    @Test
+    void jarDownload2Test() throws IOException {
+        fileAPI.jarDownload(new JarInfo().setGroupId("com.cairh").setArtifactId("cpe-common-backend").setVersion("0.1.120"))
+                .copyToFolder("D:/test");
     }
 }

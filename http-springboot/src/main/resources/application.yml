@@ -29,7 +29,8 @@ lucky:
     response-auto-converts:
       - type: com.luckyframework.httpclient.core.ProtobufAutoConvert
       - type: io.github.lucklike.springboothttp.api.FanYiGouApi$FYGAutoConvert
-#    allow-print-log-body-mime-types: '*/*'
+    add-allow-print-log-body-mime-types:
+      - application/x-protobuf
 #    spring-el-functions:
 #      - alias: join
 #        clazz: com.luckyframework.common.StringUtils
@@ -57,6 +58,8 @@ API:
   user: ${API.location}/user
   file: ${API.location}/file
   java: ${API.location}/java
+
+
 
 fanYiGou:
   sm4:

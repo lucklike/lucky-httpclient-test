@@ -17,7 +17,9 @@ import java.util.concurrent.Future;
  * @version 1.0.0
  * @date 2024/3/17 23:11
  */
-@SpELVar("app-id=#{#SM4('${fanYiGou.sm4.appId}')}")
+@SpELVar({
+        "app-id=#{#SM4('${fanYiGou.sm4.appId}')}"
+})
 @HttpClientComponent
 public interface TranslationApi extends FanYiGouApi {
 

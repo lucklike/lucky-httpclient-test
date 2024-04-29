@@ -5,6 +5,7 @@ import com.luckyframework.common.StringUtils;
 import com.luckyframework.httpclient.proxy.spel.FunctionAlias;
 import com.luckyframework.httpclient.proxy.spel.FunctionFilter;
 import com.luckyframework.serializable.SerializationSchemeFactory;
+import io.github.lucklike.entity.JarInfo;
 import io.github.lucklike.httpclient.annotation.SpELFunction;
 import io.github.lucklike.util.SM4Util;
 
@@ -61,4 +62,13 @@ public class SpELFunctionUtils {
     public static Object fromJson(String jsonStr) throws Exception {
         return SerializationSchemeFactory.getJsonScheme().deserialization(jsonStr, Object.class);
     }
+
+    // com/cairh/cpe-common-backend/0.1.17/cpe-common-backend-0.1.17-sources.jar
+    @FunctionAlias("TO_PATH")
+    public static String toPath(JarInfo jarInfo){
+        String pathTemp = "{}/{}/{}/{}-{}-sources.jar";
+        String groupIdPath = jarInfo.getGroupId().replace(".", "/");
+        return StringUtils.format(pathTemp, groupIdPath, jarInfo.getArtifactId(), jarInfo.getVersion(), jarInfo.getArtifactId(), jarInfo.getVersion());
+    }
+
 }

@@ -9,9 +9,11 @@ import com.luckyframework.httpclient.core.Request;
 import com.luckyframework.httpclient.core.Response;
 import com.luckyframework.httpclient.proxy.annotations.Branch;
 import com.luckyframework.httpclient.proxy.annotations.ConditionalSelection;
+import com.luckyframework.httpclient.proxy.annotations.ContentCompressProhibition;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
+import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
 import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
@@ -41,6 +43,8 @@ import java.util.Map;
 @StaticQuery("appid=#{appId}")
 @DomainName("https://www.fanyigou.com")
 @InterceptorRegister(intercept = @ObjectGenerate(msg = "tokenInterceptor"), priority = 99)
+//@ResultConvert(convert = @ObjectGenerate(msg = "FYGResultConvert"))
+@ContentCompressProhibition
 public interface FanYiGouApi {
 
     /**
@@ -85,6 +89,26 @@ public interface FanYiGouApi {
         }
     }
 
+    @Component("FYGResultConvert")
+    class FYGResultConvert implements ResponseConvert {
+
+        @Override
+        public <T> T convert(Response response, ConvertContext context) throws Throwable {
+            int status = response.getStatus();
+            if (200 != status) {
+                throw new LuckyRuntimeException("翻译接口调用异常，响应码【{}】", status);
+            }
+            if (response.getResult().length == 0) {
+                throw new LuckyRuntimeException("翻译接口未返回结果，请检查请求参数是否正确！");
+            }
+            ConfigurationMap configMap = response.jsonStrToConfigMap();
+            if (!configMap.containsConfigKey("code") || configMap.getInt("code") != 0) {
+                throw new LuckyRuntimeException("翻译失败！code={}，msg={}", configMap.getInt("code"), configMap.getInt("msg"));
+            }
+            return response.jsonStrToEntity(context.getRealMethodReturnType());
+        }
+    }
+
     class FYGAutoConvert implements Response.AutoConvert {
 
         @Override
@@ -97,7 +121,12 @@ public interface FanYiGouApi {
             if (200 != resp.getStatus()) {
                 throw new LuckyRuntimeException("翻译接口调用异常，响应码【{}】", resp.getStatus());
             }
-            return resp.jsonStrToEntity(type);
+            try {
+                return resp.jsonStrToEntity(type);
+            }catch (Exception e) {
+                throw new LuckyRuntimeException("响应体【'{}'】无法转换为【{}】", resp.getStringResult(), type);
+            }
+
         }
     }
 }
