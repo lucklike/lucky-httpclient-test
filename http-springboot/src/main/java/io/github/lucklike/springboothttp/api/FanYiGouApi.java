@@ -89,7 +89,7 @@ public interface FanYiGouApi {
         }
     }
 
-    @Component("FYGResultConvert")
+//    @Component("FYGResultConvert")
     class FYGResultConvert implements ResponseConvert {
 
         @Override
@@ -109,6 +109,7 @@ public interface FanYiGouApi {
         }
     }
 
+    @Component
     class FYGAutoConvert implements Response.AutoConvert {
 
         @Override

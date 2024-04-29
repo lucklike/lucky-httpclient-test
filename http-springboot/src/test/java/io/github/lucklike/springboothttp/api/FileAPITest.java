@@ -50,7 +50,7 @@ public class FileAPITest {
 
     @Test
     void jarDownload2Test() throws IOException {
-        fileAPI.jarDownload(new JarInfo().setGroupId("com.cairh").setArtifactId("cpe-common-backend").setVersion("0.1.120"))
+        fileAPI.jarDownload(new JarInfo().setGroupId("com.cairh").setArtifactId("cpe-common-backend").setVersion("0.1.20"))
                 .copyToFolder("D:/test");
     }
 }

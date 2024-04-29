@@ -26,11 +26,9 @@ lucky:
       - io.github.lucklike.springboothttp.api.spel.function
     spring-el-package-imports:
       - java.util
-    response-auto-converts:
-      - type: com.luckyframework.httpclient.core.ProtobufAutoConvert
-      - type: io.github.lucklike.springboothttp.api.FanYiGouApi$FYGAutoConvert
     add-allow-print-log-body-mime-types:
       - application/x-protobuf
+#    accept-encoding: br, gzip
 #    spring-el-functions:
 #      - alias: join
 #        clazz: com.luckyframework.common.StringUtils
