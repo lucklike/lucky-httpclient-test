@@ -28,6 +28,7 @@ lucky:
       - java.util
     add-allow-print-log-body-mime-types:
       - application/x-protobuf
+
 #    accept-encoding: br, gzip
 #    spring-el-functions:
 #      - alias: join

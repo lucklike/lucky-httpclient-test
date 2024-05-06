@@ -3,7 +3,6 @@ package io.github.lucklike.springboothttp.api;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.luckyframework.common.ConfigurationMap;
 import com.luckyframework.common.StringUtils;
-import com.luckyframework.conversion.ConversionUtils;
 import com.luckyframework.exception.LuckyRuntimeException;
 import com.luckyframework.httpclient.core.Header;
 import com.luckyframework.httpclient.core.Request;
@@ -14,8 +13,6 @@ import com.luckyframework.httpclient.proxy.annotations.ContentCompressProhibitio
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
-import com.luckyframework.httpclient.proxy.annotations.ResultConvert;
-import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
@@ -23,8 +20,6 @@ import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
 import com.luckyframework.httpclient.proxy.spel.SpELVar;
 import io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils;
-import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Type;
@@ -36,13 +31,13 @@ import java.util.Map;
  * 翻译狗API
  */
 @SpELVar({
-        "appId=#{#SM4('${fanYiGou.sm4.appId}')}",
-        "privateKey=#{#SM4('${fanYiGou.sm4.privateKey}')}"})
-@ConditionalSelection({
-        @Branch(assertion = "#{$body$.code != 0}", exception = "翻译失败！【(#{$body$.code}) #{$body$.msg}】"),
-        @Branch(assertion = "#{$body$.code == 0}", result = "#{$body$.data.transResult}")
+    "appId=#{#SM4('${fanYiGou.sm4.appId}')}",
+    "privateKey=#{#SM4('${fanYiGou.sm4.privateKey}')}"
 })
-@StaticHeader("X-Auto-Convert=FYGAutoConvert")
+@ConditionalSelection({
+    @Branch(assertion = "#{$body$.code != 0}", exception = "翻译失败！【(#{$body$.code}) #{$body$.msg}】"),
+    @Branch(assertion = "#{$body$.code == 0}", result = "#{$body$.data.transResult}")
+})
 @StaticQuery("appid=#{appId}")
 @DomainName("https://www.fanyigou.com")
 @InterceptorRegister(intercept = @ObjectGenerate(msg = "tokenInterceptor"), priority = 99)
@@ -111,7 +106,7 @@ public interface FanYiGouApi {
         }
     }
 
-    @Component
+//    @Component
     class FYGAutoConvert implements Response.AutoConvert {
 
         @Override

@@ -4,11 +4,8 @@ import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.HttpExec;
 import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
-import com.luckyframework.httpclient.proxy.annotations.URLEncoder;
 import io.github.lucklike.httpclient.annotation.HttpClientComponent;
 import io.github.lucklike.springboothttp.api.spel.function.SM4;
-
-import java.util.concurrent.Future;
 
 /**
  * 翻译狗-翻译相关的API
@@ -23,6 +20,7 @@ public interface TranslationApi extends FanYiGouApi {
     @Post("/TranslateApi/api/trans?from=zh&to=en")
     String trans(String text);
 
+    @HttpExec.okhttp
     @Post("/TranslateApi/api/trans?#{en ? 'from=zh&to=en' : 'from=en&to=zh'}")
     String trans2(String text, @NotHttpParam boolean en);
 

@@ -19,4 +19,9 @@ class TranslationApiTest {
     void trans() throws Exception {
         System.out.println(api.trans("你好，世界！"));
     }
+
+    @Test
+    void trans2() throws Exception {
+        System.out.println(api.trans2("{科室|[0.0]}", true));
+    }
 }
