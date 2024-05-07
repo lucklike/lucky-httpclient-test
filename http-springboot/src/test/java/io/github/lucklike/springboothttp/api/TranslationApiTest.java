@@ -22,6 +22,6 @@ class TranslationApiTest {
 
     @Test
     void trans2() throws Exception {
-        System.out.println(api.trans2("{科室|[0.0]}", true));
+        System.out.println(api.trans2("{Department [wettable facial tissue-natural without fragrance]}", false).get());
     }
 }

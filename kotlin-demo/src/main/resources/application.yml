@@ -1,0 +1,7 @@
+lucky:
+  http-client:
+    enable-content-compress: true
+    enable-cookie-manage: true
+    print-log-packages:
+      - com.crh.generate.api
+    allow-print-log-body-max-length: 2048

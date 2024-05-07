@@ -19,7 +19,7 @@ public class TranslationTestController {
     }
 
     @GetMapping("trans2")
-    public String translate2(String text,
+    public Object translate2(String text,
                              @RequestParam(required = false, defaultValue = "true") boolean en) {
         return api.trans2(text, en);
     }
