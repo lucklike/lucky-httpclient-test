@@ -1,5 +1,7 @@
 package com.crh.generate.demo
 
+import com.luckyframework.httpclient.core.Request
+
 open class Person(var name: String, var age: Int)
 
 class Student(name: String, age: Int, var no: Int, var score: Int) : Person(name, age)
@@ -18,5 +20,15 @@ fun main() {
     val (name, age) = user
     print("姓名：$name, 年龄：$age\n")
     println(user.copy(age = 21))
+    request()
 
+}
+
+fun request() {
+    val request: Request = Request
+        .get("http://www.baidu.com")
+        .setUserInfo("jack:pass123456")
+        .setRef("Lucky")
+        .addQueryParameter("keyword", "百度 43");
+    println(request.uri)
 }

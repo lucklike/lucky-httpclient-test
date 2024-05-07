@@ -13,7 +13,7 @@ open class TestController {
 
     @GetMapping("baidu")
     open fun baidu(): String {
-        return httpApi.baidu();
+        return httpApi.baidu("jack:33434546");
     }
 
 }

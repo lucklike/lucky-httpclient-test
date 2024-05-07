@@ -27,4 +27,8 @@ public class TestAPITest {
         api.test1("Jack", 123);
     }
 
+    @Test
+    public void test4() {
+        api.test3( "user=123", "pwd=334564积极");
+    }
 }
