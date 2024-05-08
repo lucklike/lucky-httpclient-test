@@ -2,6 +2,7 @@ package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.httpclient.proxy.annotations.FormParam;
 import com.luckyframework.httpclient.proxy.annotations.Get;
+import com.luckyframework.httpclient.proxy.annotations.HttpExec;
 import com.luckyframework.httpclient.proxy.annotations.JsonBody;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.Put;
@@ -16,6 +17,7 @@ import io.github.lucklike.httpclient.annotation.HttpClient;
  * @version 1.0.0
  * @date 2024/3/12 00:51
  */
+//@HttpExec.okhttp
 @HttpClient("${API.user}")
 public interface UserAPI {
 

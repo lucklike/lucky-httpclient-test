@@ -31,4 +31,9 @@ public class TestAPITest {
     public void test4() {
         api.test3( "user=123", "pwd=334564积极");
     }
+
+    @Test
+    public void test5() {
+        System.out.println(api.test4("/operator-manage/list"));
+    }
 }

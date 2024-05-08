@@ -2,6 +2,7 @@ package io.github.lucklike.testcase.api;
 
 import com.luckyframework.common.StringUtils;
 import com.luckyframework.httpclient.proxy.annotations.ArgHandle;
+import com.luckyframework.httpclient.proxy.annotations.AutoRedirect;
 import com.luckyframework.httpclient.proxy.annotations.DynamicParam;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
@@ -38,9 +39,13 @@ public interface TestAPI {
 
     @Get("http://www.baidu.com")
     @StaticRef("uc=UC浏览器&query=#{p0}")
-    @StaticUserInfo(username = "Jack", password = "PA$$W0RD!$^$|{}")
     @RefParam(prefix = "&")
     void test3(String query, String ref2);
+
+    @AutoRedirect(maxCount = 10)
+    @StaticUserInfo("#{#URL_ENCODE('fukang1163@cairh.com:fk@0911!')}")
+    @Get("https://glakh.cpetest.cairenhui.com/cpe-view-main-backend/")
+    String test4(@RefParam String ref);
 
     default String getArrayStr(String prefix, String[] array) {
         List<String> elementList = new ArrayList<>();

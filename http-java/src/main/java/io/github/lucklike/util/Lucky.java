@@ -15,6 +15,7 @@ import com.luckyframework.httpclient.proxy.interceptor.CookieManagerInterceptor;
 import com.luckyframework.httpclient.proxy.interceptor.PrintLogInterceptor;
 import com.luckyframework.reflect.ClassUtils;
 import com.luckyframework.reflect.MethodUtils;
+import io.github.lucklike.spel.function.SpELFunction;
 import io.github.lucklike.testcase.api.FanYiGouApi;
 
 import javax.net.ssl.SSLEngine;
@@ -45,6 +46,7 @@ public abstract class Lucky {
 //        factory.addHeader("Accept-Encoding", "gzip, deflate, br, zstd");
         factory.setHttpExecutor(new OkHttp3Executor());
         Response.addAutoConvert(new ProtobufAutoConvert());
+        factory.addSpringElFunctionClass(SpELFunction.class);
 
 //        factory.addSpringElFunctionClass(FanYiGouApi.class);
 

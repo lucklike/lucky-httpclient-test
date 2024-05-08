@@ -12,6 +12,7 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        spELTest();
+        userInfoTest();
     }
 
 
@@ -82,5 +83,32 @@ public class Main {
                 .addVariable("parseInt2", parseInt)
                 .setExpectedResultType(Object.class));
         System.out.println(parseInt2);
+    }
+
+    private static void userInfoTest() {
+        // url  object
+        URL url = null;
+
+        try {
+            // create a URL
+            url = new URL(
+                    "https://fukang1163%40cairh.com%3Afk%400911%21@glakh.cpetest.cairenhui.com/cpe-view-main-backend#/operator-manage/list");
+
+            // get the  UserInfo
+            String _UserInfo = url.getUserInfo();
+
+            // display the URL
+            System.out.println("URL = " + url);
+
+            // display the  UserInfo
+            System.out.println(" UserInfo="
+                    + _UserInfo);
+        }
+        // if any error occurs
+        catch (Exception e) {
+
+            // display the error
+            System.out.println(e);
+        }
     }
 }

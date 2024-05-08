@@ -2,7 +2,6 @@ package io.github.lucklike.testcase.api;
 
 import com.luckyframework.spel.SpELRuntime;
 import io.github.lucklike.doccase.Lucky;
-import io.github.lucklike.entity.User;
 import org.junit.Test;
 
 public class _500004ApiTest {
