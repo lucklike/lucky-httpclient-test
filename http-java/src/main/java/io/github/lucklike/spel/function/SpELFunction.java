@@ -9,4 +9,12 @@ public class SpELFunction {
     public static String urlEncode(String text) {
         return URLEncoderUtils.encode(text, "UTF-8");
     }
+
+    @FunctionAlias("TO_STR")
+    public static String toSstring(Object obj) {
+       if (obj instanceof Double) {
+           return String.valueOf(((Double) obj).longValue());
+       }
+       return String.valueOf(obj);
+    }
 }

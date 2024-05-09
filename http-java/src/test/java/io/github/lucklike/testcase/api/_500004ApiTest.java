@@ -2,7 +2,10 @@ package io.github.lucklike.testcase.api;
 
 import com.luckyframework.spel.SpELRuntime;
 import io.github.lucklike.doccase.Lucky;
+import io.github.lucklike.testcase.api.xy.XyAgreeData;
 import org.junit.Test;
+
+import java.util.Map;
 
 public class _500004ApiTest {
     private final _500004Api api = Lucky.getApi(_500004Api.class);
@@ -14,7 +17,9 @@ public class _500004ApiTest {
 
     @Test
     public void xinyi() {
-        api.xinyi();
+        for (XyAgreeData xyData : api.xinyi()) {
+            System.out.println(xyData);
+        }
     }
 
     @Test

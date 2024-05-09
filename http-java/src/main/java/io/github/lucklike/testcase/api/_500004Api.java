@@ -11,6 +11,7 @@ import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.StaticJsonBody;
 import com.luckyframework.httpclient.proxy.annotations.StaticXmlBody;
 import com.luckyframework.httpclient.proxy.annotations.Timeout;
+import io.github.lucklike.testcase.api.xy.XyAgreeData;
 
 import java.util.List;
 import java.util.Map;
@@ -48,14 +49,14 @@ public interface _500004Api {
 
 
     @ConditionalSelection(
-            branch = {
-                    @Branch(assertion = "#{$body$.ret_code != 0}", exception = "异常响应码【#{$body$.ret_code}】：#{$body$.ret_msg}")
-            }
-            ,defaultValue = "#{$body$.ret_data}"
+        branch = {
+                @Branch(assertion = "#{$body$.ret_code != 0}", exception = "接口响应码【#{#TO_STR($body$.ret_code)}】，接口错误提示信息【#{$body$.ret_msg}】")
+        },
+        defaultValue = "#{$body$.ret_data}"
     )
     @StaticJsonBody("{app_id: HTJSDWT}")
     @Post("http://xy.httest.cairenhui.com:9092/EeamsWeb/json/service/queryPTOList.do")
-    List<Map<String, Object>> xinyi();
+    List<XyAgreeData> xinyi();
 
 }
 

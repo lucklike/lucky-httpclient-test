@@ -7,6 +7,7 @@ import com.luckyframework.httpclient.core.executor.OkHttp3Executor;
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
 import com.luckyframework.httpclient.proxy.creator.Scope;
 import com.luckyframework.httpclient.proxy.interceptor.PrintLogInterceptor;
+import io.github.lucklike.spel.function.SpELFunction;
 
 /**
  * 复杂代理对象生成的工具类
@@ -21,6 +22,7 @@ public class Lucky {
 
     static {
         factory = new HttpClientProxyObjectFactory(new HttpClientExecutor());
+        factory.addSpringElFunctionClass(SpELFunction.class);
         factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
             log.setAllowPrintLogBodyMaxLength(1000);
 //            log.setReqCondition("false");
