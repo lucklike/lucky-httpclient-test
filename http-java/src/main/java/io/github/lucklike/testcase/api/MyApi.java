@@ -9,6 +9,7 @@ import com.luckyframework.httpclient.proxy.annotations.GzipCompress;
 import com.luckyframework.httpclient.proxy.annotations.HttpRequest;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.ZstdCompress;
+import java.util.concurrent.CompletableFuture;
 
 import java.util.concurrent.Future;
 
@@ -32,7 +33,7 @@ public interface MyApi {
      */
 
     @HttpRequest(url = "http://www.bilibili.com/", method = GET)
-    Future<String> index();
+    CompletableFuture<String> index();
 
     /*
         GET http://localhost:8081/simple/sayHello?name=Lucky

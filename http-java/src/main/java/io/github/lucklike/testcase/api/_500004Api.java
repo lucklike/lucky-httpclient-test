@@ -1,13 +1,19 @@
 package io.github.lucklike.testcase.api;
 
+import com.luckyframework.httpclient.proxy.annotations.Branch;
 import com.luckyframework.httpclient.proxy.annotations.BrowserFeign;
+import com.luckyframework.httpclient.proxy.annotations.ConditionalSelection;
 import com.luckyframework.httpclient.proxy.annotations.ContentCompress;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.HttpExec;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
+import com.luckyframework.httpclient.proxy.annotations.StaticJsonBody;
 import com.luckyframework.httpclient.proxy.annotations.StaticXmlBody;
 import com.luckyframework.httpclient.proxy.annotations.Timeout;
+
+import java.util.List;
+import java.util.Map;
 
 import static com.luckyframework.httpclient.proxy.annotations.BrowserFeign.BOT;
 
@@ -39,6 +45,17 @@ public interface _500004Api {
             "</soapenv:Envelope>")
     @Post("htesb")
     String htesb();
+
+
+    @ConditionalSelection(
+            branch = {
+                    @Branch(assertion = "#{$body$.ret_code != 0}", exception = "异常响应码【#{$body$.ret_code}】：#{$body$.ret_msg}")
+            }
+            ,defaultValue = "#{$body$.ret_data}"
+    )
+    @StaticJsonBody("{app_id: HTJSDWT}")
+    @Post("http://xy.httest.cairenhui.com:9092/EeamsWeb/json/service/queryPTOList.do")
+    List<Map<String, Object>> xinyi();
 
 }
 

@@ -13,6 +13,11 @@ public class _500004ApiTest {
     }
 
     @Test
+    public void xinyi() {
+        api.xinyi();
+    }
+
+    @Test
     public void test() {
         SpELRuntime runtime = new SpELRuntime();
 

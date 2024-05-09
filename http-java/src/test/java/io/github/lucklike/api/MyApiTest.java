@@ -1,9 +1,11 @@
 package io.github.lucklike.api;
 
+import cn.hutool.core.util.EnumUtil;
 import io.github.lucklike.testcase.api.MyApi;
 import io.github.lucklike.util.Lucky;
 import org.junit.Test;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -26,5 +28,10 @@ public class MyApiTest {
     public void sendRequestTest() {
         String indexContent = myApi.sendRequest("Lucky");
         System.out.println(indexContent);
+    }
+
+    @Test
+    public void tttt() {
+        System.out.println(Objects.equals(null, null));
     }
 }
