@@ -17,9 +17,14 @@ public class _500004ApiTest {
 
     @Test
     public void xinyi() {
-        for (XyAgreeData xyData : api.xinyi()) {
+        for (XyAgreeData xyData : api.xinyi(10)) {
             System.out.println(xyData);
         }
+    }
+
+    @Test
+    public void baidu() {
+        System.out.println(api.baidu());
     }
 
     @Test

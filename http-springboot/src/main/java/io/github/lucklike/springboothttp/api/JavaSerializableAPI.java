@@ -4,14 +4,14 @@ import com.luckyframework.httpclient.proxy.annotations.ConvertProhibition;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.JavaBody;
 import com.luckyframework.httpclient.proxy.annotations.Put;
-import com.luckyframework.httpclient.proxy.annotations.ResponseSelect;
+import com.luckyframework.httpclient.proxy.annotations.RespSelect;
 import com.luckyframework.httpclient.proxy.annotations.StaticCookie;
 import com.luckyframework.httpclient.proxy.annotations.URLEncoder;
 import io.github.lucklike.User;
 import io.github.lucklike.httpclient.annotation.HttpClient;
 
 @URLEncoder
-@ResponseSelect("#{$body$.data}")
+@RespSelect("#{$body$.data}")
 @HttpClient("${API.java}")
 public interface JavaSerializableAPI {
 

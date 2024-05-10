@@ -21,10 +21,10 @@ public class Lucky {
     private static final HttpClientProxyObjectFactory factory;
 
     static {
-        factory = new HttpClientProxyObjectFactory(new HttpClientExecutor());
+        factory = new HttpClientProxyObjectFactory();
         factory.addSpringElFunctionClass(SpELFunction.class);
         factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
-            log.setAllowPrintLogBodyMaxLength(1000);
+            log.setAllowPrintLogBodyMaxLength(200);
 //            log.setReqCondition("false");
 //            log.setPrintArgsInfo(true);
 //            log.setPrintAnnotationInfo(true);

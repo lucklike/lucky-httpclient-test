@@ -2,7 +2,7 @@ package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
-import com.luckyframework.httpclient.proxy.annotations.ResponseSelect;
+import com.luckyframework.httpclient.proxy.annotations.RespSelect;
 import io.github.lucklike.httpclient.annotation.HttpClient;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Map;
  * @date 2024/3/8 22:35
  */
 
-@ResponseSelect("#{$body$.data}")
+@RespSelect("#{$body$.data}")
 @HttpClient("${API.cookie}")
 public interface SessionAPI {
 
@@ -25,7 +25,7 @@ public interface SessionAPI {
     String hello();
 
     @Get("set")
-    @ResponseSelect("#{$resp$.getResponseCookies().![{name: name, value: value}]}")
+    @RespSelect("#{$resp$.getResponseCookies().![{name: name, value: value}]}")
     List<Map<String, String>> set();
 
     @Get("${API.location}/{path}/show")
