@@ -13,7 +13,7 @@ import com.luckyframework.httpclient.proxy.annotations.PrintLog;
  */
 @PrintLog
 @DomainName("#{serverBootHttp}")
-public interface _09_SpEL_$val$_Api {
+public interface _09_SpEL_GlobalVal_Api {
 
     @Get("#{helloApi}")
     String sayHello(String name);

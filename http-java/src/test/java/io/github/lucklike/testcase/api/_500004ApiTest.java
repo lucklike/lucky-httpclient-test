@@ -17,7 +17,7 @@ public class _500004ApiTest {
 
     @Test
     public void xinyi() {
-        for (XyAgreeData xyData : api.xinyi(10)) {
+        for (XyAgreeData xyData : api.xinyi(15)) {
             System.out.println(xyData);
         }
     }

@@ -1,9 +1,7 @@
 package io.github.lucklike.springboothttp.api;
 
 import com.luckyframework.common.StringUtils;
-import com.luckyframework.httpclient.proxy.annotations.ArgHandle;
 import com.luckyframework.httpclient.proxy.annotations.Get;
-import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.spel.FunctionAlias;
 import com.luckyframework.httpclient.proxy.spel.SpELVar;
 import io.github.lucklike.httpclient.annotation.HttpClient;
@@ -22,7 +20,7 @@ public interface AddApi {
 
     @SpELVar("array=#{#LIST_TO_STRING('q', q)}")
     @Get("${API.java}/data?num=#{$this$.num()}&#{array}")
-    String getData(@NotHttpParam List<String> q);
+    String getData(List<String> q);
 
     @Get("/data")
     Future<String> getData1();

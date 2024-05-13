@@ -19,7 +19,7 @@ public interface _02_QueryParamApi {
 	    User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_391)
      */
     @Get("http://localhost:8081/query/sayHello")
-    String sayHello(String name);
+    String sayHello(@QueryParam String name);
 
 
     /*

@@ -3,8 +3,6 @@ package io.github.lucklike.doccase;
 import com.luckyframework.httpclient.proxy.HttpClientProxyObjectFactory;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author fukang
  * @version 1.0.0
@@ -12,14 +10,14 @@ import static org.junit.Assert.*;
  */
 public class _09_SpEL_$val$_ApiTest {
 
-    private final  _09_SpEL_$val$_Api api;
+    private final _09_SpEL_GlobalVal_Api api;
 
     {
         HttpClientProxyObjectFactory factory = new HttpClientProxyObjectFactory();
         factory.addSpringElRootVariable("serverBootHttp", "http://localhost:8081");
         factory.addSpringElRootVariable("helloApi", "/query/sayHello");
 
-        api = factory.getJdkProxyObject(_09_SpEL_$val$_Api.class);
+        api = factory.getJdkProxyObject(_09_SpEL_GlobalVal_Api.class);
     }
 
     @Test

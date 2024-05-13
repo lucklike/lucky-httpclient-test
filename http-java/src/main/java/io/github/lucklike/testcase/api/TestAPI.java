@@ -3,19 +3,12 @@ package io.github.lucklike.testcase.api;
 import com.luckyframework.common.StringUtils;
 import com.luckyframework.httpclient.proxy.annotations.ArgHandle;
 import com.luckyframework.httpclient.proxy.annotations.AutoRedirect;
-import com.luckyframework.httpclient.proxy.annotations.DynamicParam;
 import com.luckyframework.httpclient.proxy.annotations.Get;
-import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
-import com.luckyframework.httpclient.proxy.annotations.PathParam;
-import com.luckyframework.httpclient.proxy.annotations.QueryParam;
 import com.luckyframework.httpclient.proxy.annotations.RefParam;
-import com.luckyframework.httpclient.proxy.annotations.RefType;
-import com.luckyframework.httpclient.proxy.annotations.StaticForm;
 import com.luckyframework.httpclient.proxy.annotations.StaticFormBody;
 import com.luckyframework.httpclient.proxy.annotations.StaticRef;
 import com.luckyframework.httpclient.proxy.annotations.StaticUserInfo;
 import com.luckyframework.httpclient.proxy.annotations.UseProxy;
-import com.luckyframework.httpclient.proxy.annotations.UserInfo;
 
 import java.net.Proxy;
 import java.util.ArrayList;
@@ -35,7 +28,7 @@ public interface TestAPI {
     void test1(String name1, Integer name2);
 
     @Get("http://www.baidu.com?#{$this$.getArrayStr('array', array)}")
-    void test2(@NotHttpParam String[] array);
+    void test2(String[] array);
 
     @Get("http://www.baidu.com")
     @StaticRef("uc=UC浏览器&query=#{p0}")

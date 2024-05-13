@@ -11,9 +11,11 @@ import com.luckyframework.httpclient.proxy.annotations.Branch;
 import com.luckyframework.httpclient.proxy.annotations.ConditionalSelection;
 import com.luckyframework.httpclient.proxy.annotations.ContentCompressProhibition;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
+import com.luckyframework.httpclient.proxy.annotations.Ex;
 import com.luckyframework.httpclient.proxy.annotations.InterceptorRegister;
 import com.luckyframework.httpclient.proxy.annotations.ObjectGenerate;
 import com.luckyframework.httpclient.proxy.annotations.StaticQuery;
+import com.luckyframework.httpclient.proxy.annotations.Throws;
 import com.luckyframework.httpclient.proxy.convert.ConvertContext;
 import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
@@ -31,13 +33,16 @@ import java.util.Map;
  * 翻译狗API
  */
 @SpELVar({
-    "appId=#{#SM4('${fanYiGou.sm4.appId}')}",
-    "privateKey=#{#SM4('${fanYiGou.sm4.privateKey}')}"
+        "appId=#{#SM4('${fanYiGou.sm4.appId}')}",
+        "privateKey=#{#SM4('${fanYiGou.sm4.privateKey}')}"
 })
-@ConditionalSelection({
-    @Branch(assertion = "#{$body$.code != 0}", exception = "翻译失败！【(#{$body$.code}) #{$body$.msg}】"),
-    @Branch(assertion = "#{$body$.code == 0}", result = "#{$body$.data.transResult}")
-})
+@Throws(
+    value = {
+        @Ex(assertion = "#{$status$ != 200}", message = "翻译狗接口调用失败，响应码：#{$status$}"),
+        @Ex(assertion = "#{$body$.code != 0}", message = "翻译狗接口翻译失败！【(#{$body$.code}) #{$body$.msg}】"),
+    },
+    result = "#{$body$.data.transResult}"
+)
 @StaticQuery("appid=#{appId}")
 @DomainName("https://www.fanyigou.com")
 @InterceptorRegister(intercept = @ObjectGenerate(msg = "tokenInterceptor"), priority = 99)
@@ -86,7 +91,7 @@ public interface FanYiGouApi {
         }
     }
 
-//    @Component("FYGResultConvert")
+    //    @Component("FYGResultConvert")
     class FYGResultConvert implements ResponseConvert {
 
         @Override
@@ -106,7 +111,7 @@ public interface FanYiGouApi {
         }
     }
 
-//    @Component
+    //    @Component
     class FYGAutoConvert implements Response.AutoConvert {
 
         @Override
@@ -123,7 +128,7 @@ public interface FanYiGouApi {
             }
             try {
                 return resp.jsonStrToEntity(type);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 throw new LuckyRuntimeException("响应体【'{}'】无法转换为【{}】", resp.getStringResult(), type);
             }
 

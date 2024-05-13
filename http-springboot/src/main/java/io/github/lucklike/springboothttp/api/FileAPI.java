@@ -1,12 +1,9 @@
 package io.github.lucklike.springboothttp.api;
 
-import com.luckyframework.httpclient.proxy.annotations.Branch;
-import com.luckyframework.httpclient.proxy.annotations.ConditionalSelection;
 import com.luckyframework.httpclient.proxy.annotations.Ex;
 import com.luckyframework.httpclient.proxy.annotations.Get;
 import com.luckyframework.httpclient.proxy.annotations.HttpExec;
 import com.luckyframework.httpclient.proxy.annotations.MultiFile;
-import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.RespImportIntoSpEL;
@@ -43,8 +40,8 @@ public interface FileAPI {
 
 
     @Throws({
-        @Ex(assertion = "#{$status$ != 200}", message = "【http-status=#{$status$}】Jar包下载失败：#{jar.toString()}")
+            @Ex(assertion = "#{$status$ != 200}", message = "【http-status=#{$status$}】Jar包下载失败：#{jar.toString()}")
     })
     @Get("http://maven.cairenhui.com/nexus/content/repositories/crh_dev/#{#TO_PATH(jar)}")
-    MultipartFile jarDownload(@NotHttpParam JarInfo jar);
+    MultipartFile jarDownload(JarInfo jar);
 }

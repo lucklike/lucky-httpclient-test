@@ -3,7 +3,7 @@ package io.github.lucklike.doccase;
 import com.luckyframework.common.NanoIdUtils;
 import com.luckyframework.httpclient.proxy.annotations.DomainName;
 import com.luckyframework.httpclient.proxy.annotations.Get;
-import com.luckyframework.httpclient.proxy.annotations.NotHttpParam;
+import com.luckyframework.httpclient.proxy.annotations.HttpExec;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.Put;
 import com.luckyframework.httpclient.proxy.annotations.RespSelect;
@@ -28,7 +28,8 @@ public interface _10_StaticParamAnnotationApi {
     	GET http://localhost:8081/query/sayHello?name=马晓晨
 	    User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_391)
      */
-    @StaticQuery({"name=马晓晨"})
+    @HttpExec.okhttp
+    @StaticQuery({"name=马 晓 晨"})
     @Get("/query/sayHello")
     String sayHello();
 
@@ -185,7 +186,6 @@ public interface _10_StaticParamAnnotationApi {
             "args: #{T(java.util.Arrays).toString($mc$.getArguments())}" +
             "}")
     @Post("body/json")
-    @NotHttpParam
     Result<User> jsonSpEL(String name, String pwd);
 
     default String nanoId(int size){
