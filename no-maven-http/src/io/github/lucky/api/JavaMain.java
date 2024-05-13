@@ -27,7 +27,7 @@ public class JavaMain {
         // 获取基于JDK实现的代理对象
         BaiDuApi api = factory.getJdkProxyObject(BaiDuApi.class);
         // 执行HTTP方法
-        System.out.println(api.index());
+        System.out.println(api.index("Hello Baidu"));
     }
 
     interface BaiDuApi {
@@ -39,6 +39,6 @@ public class JavaMain {
                 username = "zaf55368",
                 password = "zaf55368")
         @Get("http://www.baidu.com")
-        String index();
+        String index(String keyword);
     }
 }

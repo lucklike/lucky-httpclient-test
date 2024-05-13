@@ -26,7 +26,7 @@ public class Lucky {
         factory.addInterceptor(PrintLogInterceptor.class, Scope.METHOD_CONTEXT, log -> {
             log.setAllowPrintLogBodyMaxLength(200);
 //            log.setReqCondition("false");
-//            log.setPrintArgsInfo(true);
+            log.setPrintArgsInfo(true);
 //            log.setPrintAnnotationInfo(true);
         });
     }
