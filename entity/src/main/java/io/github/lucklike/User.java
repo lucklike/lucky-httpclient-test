@@ -1,5 +1,6 @@
 package io.github.lucklike;
 
+import io.github.lucklike.entity.B;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 用户实体类
@@ -26,6 +28,7 @@ public class User implements Serializable {
     private String password;
     private String email;
     private Integer age;
+    private List<B> b;
 
     public static User initIdAndAge(Integer id, Integer age) {
         return new User().setId(id).setAge(age);
