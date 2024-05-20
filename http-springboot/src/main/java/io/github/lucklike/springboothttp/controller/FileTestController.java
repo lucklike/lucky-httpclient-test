@@ -24,7 +24,7 @@ public class FileTestController {
 
     @GetMapping("upload")
     public Result<Map<String, Object>> upload(String[] paths)  {
-        return api.upload(paths);
+        return api.upload(paths, "来自网络的文件");
     }
 
     @GetMapping("preview")

@@ -4,7 +4,7 @@ server:
 lucky:
   http-client:
     http-executor: jdk
-    ignore-ssl-verify: true
+#    ignore-ssl-verify: true
     enable-cookie-manage: true
     cookie-manage-priority: 1001
     cookie-store-generate:
@@ -60,6 +60,8 @@ API:
   java: ${API.location}/java
 
 
+download:
+  folder: D:/cairh/download/files/
 
 fanYiGou:
   sm4:
