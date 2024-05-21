@@ -19,7 +19,7 @@ import java.util.concurrent.Future;
  */
 @URLEncoder
 @IgnoreVerifySSL
-@StaticHeader("X-Auth-Token=efueirguheigh84545y989")
+@StaticHeader("X-Auth-Token: efueirguheigh84545y989")
 @StaticCookie("SessionID=21432543546567687658")
 @ExceptionReturn("出异常了老铁")
 @DomainName("https://localhost/simple/")

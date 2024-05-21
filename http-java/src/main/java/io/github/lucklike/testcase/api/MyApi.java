@@ -41,7 +41,7 @@ public interface MyApi {
         Accept: text/plain
      */
 
-    @StaticHeader({"Accept=text/plain"})
+    @StaticHeader({"Accept: text/plain"})
     @HttpRequest(
             url = "http://localhost:8081/simple/sayHello",
             method = GET

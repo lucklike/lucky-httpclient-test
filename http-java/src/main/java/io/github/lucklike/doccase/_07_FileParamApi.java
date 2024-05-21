@@ -84,7 +84,7 @@ public interface _07_FileParamApi {
         Binary data request body. [JPEG (164706)]
      */
     @Post("binaryUpload")
-    @StaticHeader("fileName=#{file.getName()}")
+    @StaticHeader("fileName: #{file.getName()}")
     Result<String> binaryUpload(@BinaryBody File file);
 
     @Get("preview/{fileName}")

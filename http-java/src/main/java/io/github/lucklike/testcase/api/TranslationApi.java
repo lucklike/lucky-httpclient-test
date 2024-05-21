@@ -16,7 +16,7 @@ import io.github.lucklike.proto.DemoProto;
 public interface TranslationApi extends FanYiGouApi {
 
     @SpELVar("methodName=#{$method$.getName()}")
-    @StaticHeader("X-Method-Name=#{methodName}")
+    @StaticHeader("X-Method-Name: #{methodName}")
     @Post("/TranslateApi/api/trans?from=zh&to=en")
     String trans(String text);
 

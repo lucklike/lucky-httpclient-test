@@ -27,7 +27,7 @@ public interface MyApi {
        User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_301)
        Accept: text/plain
     */
-    @StaticHeader({"Accept=text/plain"})
+    @StaticHeader({"Accept: text/plain"})
     @HttpRequest(
             url = "http://localhost:8081/simple/sayHello",
             method = GET

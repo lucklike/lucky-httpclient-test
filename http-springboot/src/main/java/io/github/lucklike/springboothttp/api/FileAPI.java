@@ -9,6 +9,8 @@ import com.luckyframework.httpclient.proxy.annotations.MultiFile;
 import com.luckyframework.httpclient.proxy.annotations.PathParam;
 import com.luckyframework.httpclient.proxy.annotations.Post;
 import com.luckyframework.httpclient.proxy.annotations.RespImportIntoSpEL;
+import com.luckyframework.httpclient.proxy.annotations.StaticForm;
+import com.luckyframework.httpclient.proxy.annotations.StaticHeader;
 import com.luckyframework.httpclient.proxy.annotations.Throws;
 import com.luckyframework.io.MultipartFile;
 import com.luckyframework.reflect.Param;
@@ -50,6 +52,9 @@ public interface FileAPI {
     @Get("http://maven.cairenhui.com/nexus/content/repositories/crh_dev/#{#TO_PATH(jar)}")
     String jarToLocal(JarInfo jar);
 
+
+    @StaticForm({"fileInfo=jar", "type=java"})
+    @StaticHeader({"Range: bytes=0-500"})
     @DownloadToLocal(saveDir = "#{savePath}", filename = "#{file.artifactId}-#{file.version}")
     @Get("http://maven.cairenhui.com/nexus/content/repositories/crh_dev/#{#TO_PATH(file)}")
     File jarToLocal(@Param("file") JarInfo jar, String savePath);

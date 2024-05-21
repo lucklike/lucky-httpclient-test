@@ -28,7 +28,7 @@ lucky:
       - java.util
     add-allow-print-log-body-mime-types:
       - application/x-protobuf
-    allow-print-log-body-max-length: 500
+    allow-print-log-body-max-length: 2048
 
 #    accept-encoding: br, gzip
 #    spring-el-functions:

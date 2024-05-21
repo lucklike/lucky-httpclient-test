@@ -18,7 +18,7 @@ import com.luckyframework.httpclient.proxy.spel.SpELVar;
 public interface ChatGPTApi {
 
     @Timeout(readTimeout = 60 * 60 * 1000)
-    @StaticHeader("Authorization=Bearer #{key}")
+    @StaticHeader("Authorization: Bearer #{key}")
     @StaticJsonBody("{prompt: #{prompt}, max_tokens: #{maxTokens}, temperature: #{temperature}}")
     @Post("https://api.openai.com/v1/engines/#{model}/completions")
     Response send(String prompt);

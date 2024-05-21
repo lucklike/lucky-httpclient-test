@@ -46,7 +46,7 @@ public interface _10_StaticParamAnnotationApi {
         User-Agent: Lucky-HttpClient/2.1.0 (Java/1.8.0_391)
         X-Token: SEEDIJIHUHJNJKOK78656568898
      */
-    @StaticHeader({"X-Token=SEEDIJIHUHJNJKOK78656568898"})
+    @StaticHeader({"X-Token: SEEDIJIHUHJNJKOK78656568898"})
     @Post("other/header")
     String header();
 
