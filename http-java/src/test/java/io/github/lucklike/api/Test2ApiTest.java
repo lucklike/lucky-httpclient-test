@@ -13,4 +13,19 @@ public class Test2ApiTest {
         System.out.println(api.test());
     }
 
+    @Test
+    public void test2() {
+        System.out.println(api.baidu("Hello world"));
+    }
+
+    @Test
+    public void test3() {
+        System.out.println(api.fileDownload());
+    }
+
+    @Test
+    public void test4() {
+        api.baidu2();
+    }
+
 }
