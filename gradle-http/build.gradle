@@ -1,0 +1,25 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
+}
+
+group = 'io.lucklike.httpdemo'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    implementation 'org.projectlombok:lombok'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.1'
+    implementation 'io.github.lucklike:lucky-httpclient-spring-boot-starter:1.1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(8)
+}

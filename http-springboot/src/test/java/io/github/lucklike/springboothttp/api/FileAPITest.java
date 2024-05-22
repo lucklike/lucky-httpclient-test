@@ -20,7 +20,8 @@ public class FileAPITest {
     void uploadTest() {
         String[] files = {
                 "https://tse2-mm.cn.bing.net/th/id/OIP-C.2zd6VjunSEhgIOVfmMFXZAHaNK?rs=1&pid=ImgDetMain",
-                "file:D:/*.pdf"
+                "file:D:/*.pdf",
+                "file:D:/**/*.png"
         };
         System.out.println(fileAPI.upload(files, "来自网络和本地的文件"));
     }

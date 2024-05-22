@@ -1,0 +1,6 @@
+server:
+  port: 9527
+
+lucky:
+  http-client:
+    spring-el-function-packages: io.lucklike.httpdemo.spelfunction

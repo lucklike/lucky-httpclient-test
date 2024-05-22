@@ -21,6 +21,7 @@ import com.luckyframework.httpclient.proxy.convert.ResponseConvert;
 import com.luckyframework.httpclient.proxy.interceptor.Interceptor;
 import com.luckyframework.httpclient.proxy.interceptor.InterceptorContext;
 import com.luckyframework.httpclient.proxy.spel.SpELVar;
+import io.github.lucklike.springboothttp.api.spel.function.FanYiGouFunction;
 import io.github.lucklike.springboothttp.api.spel.function.SpELFunctionUtils;
 import org.springframework.stereotype.Component;
 
@@ -64,30 +65,10 @@ public interface FanYiGouApi {
             // 获取当前请求的Query参数Map，并加入privateKey，用于生成Token
             Map<String, Object> queryMap = request.getSimpleQueries();
             queryMap.put("privatekey", context.getNestRootVar("privateKey"));
-            String token = getToken(queryMap);
+            String token = FanYiGouFunction.getToken(queryMap);
 
             //  补充参数token
             request.addQueryParameter("token", token);
-        }
-
-        /**
-         * 获取接口访问所必须的token
-         *
-         * @param paramMap 参与token加密的参数Map
-         * @return token
-         */
-        private String getToken(Map<String, Object> paramMap) {
-            List<String> sortParamName = new ArrayList<>(paramMap.keySet());
-            sortParamName.sort(String::compareTo);
-            List<String> elementList = new ArrayList<>(sortParamName.size());
-            for (String name : sortParamName) {
-                Object paramValue = paramMap.get(name);
-                if (paramValue != null) {
-                    elementList.add(name + "=" + paramMap.get(name));
-                }
-            }
-            String stringA = StringUtils.join(elementList, "&");
-            return DigestUtil.md5Hex(stringA).toUpperCase();
         }
     }
 
