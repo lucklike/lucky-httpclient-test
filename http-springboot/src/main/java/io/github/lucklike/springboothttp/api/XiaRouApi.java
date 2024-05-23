@@ -45,4 +45,9 @@ public interface XiaRouApi {
     @DownloadToLocal(saveDir = "D:/web/bizhi/", filename = "#{p0.utag}")
     @Get("#{p0.img_1600_900}")
     File saveBiZhi2(Map<String, Object> biZhiInfo);
+
+
+    @DownloadToLocal("D:/web/qingtou/#{(p0-1) / 2}")
+    @Get("https://www.hhlqilongzhu.cn/api/tu_qingtou_result.php")
+    File qingTou(@QueryParam Integer imageid);
 }

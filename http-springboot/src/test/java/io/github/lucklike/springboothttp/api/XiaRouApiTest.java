@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.Set;
+import java.util.concurrent.Executors;
 
 @SpringBootTest
 public class XiaRouApiTest {
@@ -52,5 +53,26 @@ public class XiaRouApiTest {
         });
         sw.stopWatch();
         System.out.println(sw.prettyPrintMillis());
+    }
+
+    @Test
+    void qingTouTest() {
+        StopWatch sw = new StopWatch();
+        EnhanceFuture<File> futureList = new EnhanceFutureFactory(Executors.newFixedThreadPool(6)).create();
+        for (int i = 0; i < 547; i++) {
+            int finalI = i;
+            futureList.addAsyncTask(() -> api.qingTou(finalI));
+        }
+        futureList.getResultMap().forEach((k, v) -> {
+            Console.println("{} -> {}", k, v.getAbsolutePath());
+        });
+        sw.stopWatch();
+        System.out.println(sw.prettyPrintMillis());
+    }
+
+    @Test
+    void testt() {
+        api.qingTou(3);
+        api.qingTou(4);
     }
 }
